@@ -1,7 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Coconut Weather Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 28px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #ddd;
+    }
+    .card {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .alert {
+      background-color: #ffe5e5;
+    }
+    .watch {
+      background-color: #fff4e5;
+    }
+    .normal {
+      background-color: #e5ffe5;
+    }
+    .title {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .alert .title {
+      color: #c00;
+    }
+    .watch .title {
+      color: #f80;
+    }
+    .normal .title {
+      color: #060;
+    }
+  </style>
 </head>
 <body>
   <h1>Coconut Weather Dashboard</h1>
@@ -16,6 +59,12 @@
         const output = document.getElementById('output');
         output.innerHTML = '';
 
+        const groups = {
+          Alert: [],
+          Watch: [],
+          Normal: []
+        };
+
         const combined = snapshot.locations.map(loc => {
           const m = metrics.locations.find(x => x.id === loc.id);
           if (!m) return null;
@@ -27,67 +76,46 @@
             rain: m.rainfall_30d,
             dry: m.current_dry_spell
           };
-        }).filter(x => x !== null);
+        }).filter(Boolean);
 
-        const groups = { Alert: [], Watch: [], Normal: [] };
         combined.forEach(item => {
-          if (groups[item.status]) groups[item.status].push(item);
+          if (groups[item.status]) {
+            groups[item.status].push(item);
+          }
         });
 
-        // Sort within each section: highest dry spell first, then lowest rainfall_30d
         Object.keys(groups).forEach(key => {
           groups[key].sort((a, b) => {
-            if (b.dry !== a.dry) return b.dry - a.dry;  // highest dry spell first
-            return a.rain - b.rain;  // then lowest rainfall_30d
+            if (b.dry !== a.dry) return b.dry - a.dry;
+            return a.rain - b.rain;
           });
         });
 
-        const sectionOrder = ['Alert', 'Watch', 'Normal'];
-
-        sectionOrder.forEach(status => {
+        ['Alert', 'Watch', 'Normal'].forEach(status => {
           const section = document.createElement('div');
-          
+
           const header = document.createElement('h2');
           header.textContent = status;
-          header.style.cssText = 'margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px;';
           section.appendChild(header);
 
-          const container = document.createElement('div');
-          
           groups[status].forEach(item => {
-            const div = document.createElement('div');
+            const card = document.createElement('div');
+            card.className = 'card ' + status.toLowerCase();
 
-            const bgColor =
-              item.status === 'Alert' ? '#ffe5e5' :
-              item.status === 'Watch' ? '#fff4e5' :
-              '#e5ffe5';
-
-            const textColor =
-              item.status === 'Alert' ? '#c00' :
-              item.status === 'Watch' ? '#f80' :
-              '#060';
-
-            div.style.cssText = 
-              'padding: 10px; margin: 8px; border: 1px solid #ccc; border-radius: 6px; background-color: ' + bgColor + ';';
-
-            div.innerHTML =
-              '<div style="font-weight: bold; color: ' + textColor + '">' +
-              item.region + ' — ' + item.status +
-              '</div>' +
-              '<div style="margin-top: 6px;">' +
-              'Temp: ' + item.temp + '°C</div>' +
+            card.innerHTML =
+              '<div class="title">' + item.region + ' | ' + item.status + '</div>' +
+              '<div>Temp: ' + item.temp + '°C</div>' +
               '<div>Rainfall (30d): ' + item.rain + 'mm</div>' +
               '<div>Dry spell: ' + item.dry + ' days</div>';
 
-            container.appendChild(div);
+            section.appendChild(card);
           });
 
-          section.appendChild(container);
           output.appendChild(section);
         });
 
       } catch (err) {
-        document.getElementById('output').textContent = "Error loading data";
+        document.getElementById('output').textContent = 'Error loading data';
         console.error(err);
       }
     }
