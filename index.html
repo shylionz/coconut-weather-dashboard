@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coconut Weather Dashboard</title>
+</head>
+<body>
+  <h1>Coconut Weather Dashboard</h1>
+  <div id="output">Loading...</div>
+
+  <script>
+    async function loadData() {
+      try {
+        const snapshot = await fetch('data/snapshot.json').then(r => r.json());
+        const metrics = await fetch('data/metrics.json').then(r => r.json());
+
+        const output = document.getElementById('output');
+        output.innerHTML = '';
+
+        const combined = snapshot.locations.map(loc => {
+          const m = metrics.locations.find(x => x.id === loc.id);
+          if (!m) return null;
+
+          return {
+            region: loc.region,
+            temp: loc.current.temp_c,
+            status: m.status,
+            rain: m.rainfall_30d,
+            dry: m.current_dry_spell
+          };
+        }).filter(x => x !== null);
+
+        const groups = { Alert: [], Watch: [], Normal: [] };
+        combined.forEach(item => {
+          if (groups[item.status]) groups[item.status].push(item);
+        });
+
+        // Sort within each section: highest dry spell first, then lowest rainfall_30d
+        Object.keys(groups).forEach(key => {
+          groups[key].sort((a, b) => {
+            if (b.dry !== a.dry) return b.dry - a.dry;  // highest dry spell first
+            return a.rain - b.rain;  // then lowest rainfall_30d
+          });
+        });
+
+        const sectionOrder = ['Alert', 'Watch', 'Normal'];
+
+        sectionOrder.forEach(status => {
+          const section = document.createElement('div');
+          
+          const header = document.createElement('h2');
+          header.textContent = status;
+          header.style.cssText = 'margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px;';
+          section.appendChild(header);
+
+          const container = document.createElement('div');
+          
+          groups[status].forEach(item => {
+            const div = document.createElement('div');
+
+            const bgColor =
+              item.status === 'Alert' ? '#ffe5e5' :
+              item.status === 'Watch' ? '#fff4e5' :
+              '#e5ffe5';
+
+            const textColor =
+              item.status === 'Alert' ? '#c00' :
+              item.status === 'Watch' ? '#f80' :
+              '#060';
+
+            div.style.cssText = 
+              'padding: 10px; margin: 8px; border: 1px solid #ccc; border-radius: 6px; background-color: ' + bgColor + ';';
+
+            div.innerHTML =
+              '<div style="font-weight: bold; color: ' + textColor + '">' +
+              item.region + ' — ' + item.status +
+              '</div>' +
+              '<div style="margin-top: 6px;">' +
+              'Temp: ' + item.temp + '°C</div>' +
+              '<div>Rainfall (30d): ' + item.rain + 'mm</div>' +
+              '<div>Dry spell: ' + item.dry + ' days</div>';
+
+            container.appendChild(div);
+          });
+
+          section.appendChild(container);
+          output.appendChild(section);
+        });
+
+      } catch (err) {
+        document.getElementById('output').textContent = "Error loading data";
+        console.error(err);
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>

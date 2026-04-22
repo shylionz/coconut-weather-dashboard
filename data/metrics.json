@@ -1,0 +1,85 @@
+{
+  "locations": [
+    {
+      "id": "ph_davao",
+      "rainfall_7d": 28.6,
+      "rainfall_30d": 87.3,
+      "rainy_days_30d": 20,
+      "current_dry_spell": 0,
+      "hot_days_30d": 17,
+      "status": "Watch"
+    },
+    {
+      "id": "ph_cagayan",
+      "rainfall_7d": 8.8,
+      "rainfall_30d": 27.9,
+      "rainy_days_30d": 14,
+      "current_dry_spell": 4,
+      "hot_days_30d": 2,
+      "status": "Alert"
+    },
+    {
+      "id": "ph_palawan",
+      "rainfall_7d": 2.4,
+      "rainfall_30d": 17.8,
+      "rainy_days_30d": 21,
+      "current_dry_spell": 0,
+      "hot_days_30d": 0,
+      "status": "Alert"
+    },
+    {
+      "id": "ph_batangas",
+      "rainfall_7d": 2.1,
+      "rainfall_30d": 8.8,
+      "rainy_days_30d": 9,
+      "current_dry_spell": 1,
+      "hot_days_30d": 18,
+      "status": "Alert"
+    },
+    {
+      "id": "ph_generalsantos",
+      "rainfall_7d": 19.1,
+      "rainfall_30d": 53.5,
+      "rainy_days_30d": 25,
+      "current_dry_spell": 0,
+      "hot_days_30d": 28,
+      "status": "Watch"
+    },
+    {
+      "id": "lk_colombo",
+      "rainfall_7d": 24.1,
+      "rainfall_30d": 85.6,
+      "rainy_days_30d": 26,
+      "current_dry_spell": 0,
+      "hot_days_30d": 11,
+      "status": "Watch"
+    },
+    {
+      "id": "th_bangkok",
+      "rainfall_7d": 3.3,
+      "rainfall_30d": 23.5,
+      "rainy_days_30d": 14,
+      "current_dry_spell": 2,
+      "hot_days_30d": 28,
+      "status": "Alert"
+    },
+    {
+      "id": "vn_vinhlong",
+      "rainfall_7d": 0,
+      "rainfall_30d": 5.3,
+      "rainy_days_30d": 9,
+      "current_dry_spell": 13,
+      "hot_days_30d": 9,
+      "status": "Alert"
+    },
+    {
+      "id": "id_riau",
+      "rainfall_7d": 81,
+      "rainfall_30d": 266.6,
+      "rainy_days_30d": 30,
+      "current_dry_spell": 0,
+      "hot_days_30d": 1,
+      "status": "Normal"
+    }
+  ]
+}

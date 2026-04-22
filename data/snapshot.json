@@ -1,0 +1,249 @@
+{
+  "generated_at": "2026-04-12T08:51:10.195435Z",
+  "source": "open-meteo",
+  "locations": [
+    {
+      "id": "ph_davao",
+      "country": "Philippines",
+      "region": "Davao",
+      "coordinates": {
+        "lat": 7.07,
+        "lon": 125.6
+      },
+      "current": {
+        "temp_c": 30,
+        "humidity_pct": 47,
+        "wind_kmh": 12.4,
+        "wind_dir": 170,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 34,
+          "low_c": 23
+        },
+        "tomorrow": {
+          "high_c": 36,
+          "low_c": 22
+        }
+      },
+      "last_updated": "2026-04-12T08:50:58.746896Z"
+    },
+    {
+      "id": "ph_cagayan",
+      "country": "Philippines",
+      "region": "Cagayan de Oro",
+      "coordinates": {
+        "lat": 8.48,
+        "lon": 124.64
+      },
+      "current": {
+        "temp_c": 30,
+        "humidity_pct": 60,
+        "wind_kmh": 13.7,
+        "wind_dir": 360,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 31,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-04-12T08:51:00.466979Z"
+    },
+    {
+      "id": "ph_palawan",
+      "country": "Philippines",
+      "region": "Puerto Princesa",
+      "coordinates": {
+        "lat": 9.75,
+        "lon": 118.77
+      },
+      "current": {
+        "temp_c": 28,
+        "humidity_pct": 71,
+        "wind_kmh": 6.4,
+        "wind_dir": 333,
+        "precip_mm": 0.3
+      },
+      "forecast": {
+        "today": {
+          "high_c": 32,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 32,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-04-12T08:51:01.855080Z"
+    },
+    {
+      "id": "ph_batangas",
+      "country": "Philippines",
+      "region": "Batangas",
+      "coordinates": {
+        "lat": 13.76,
+        "lon": 121.05
+      },
+      "current": {
+        "temp_c": 30,
+        "humidity_pct": 56,
+        "wind_kmh": 22.0,
+        "wind_dir": 128,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 30,
+          "low_c": 26
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 26
+        }
+      },
+      "last_updated": "2026-04-12T08:51:03.300999Z"
+    },
+    {
+      "id": "ph_generalsantos",
+      "country": "Philippines",
+      "region": "General Santos",
+      "coordinates": {
+        "lat": 6.11,
+        "lon": 125.17
+      },
+      "current": {
+        "temp_c": 26,
+        "humidity_pct": 85,
+        "wind_kmh": 6.3,
+        "wind_dir": 121,
+        "precip_mm": 1.2
+      },
+      "forecast": {
+        "today": {
+          "high_c": 29,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 23
+        }
+      },
+      "last_updated": "2026-04-12T08:51:04.750228Z"
+    },
+    {
+      "id": "lk_colombo",
+      "country": "Sri Lanka",
+      "region": "Colombo",
+      "coordinates": {
+        "lat": 6.93,
+        "lon": 79.85
+      },
+      "current": {
+        "temp_c": 29,
+        "humidity_pct": 83,
+        "wind_kmh": 12.9,
+        "wind_dir": 207,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 29,
+          "low_c": 27
+        },
+        "tomorrow": {
+          "high_c": 30,
+          "low_c": 28
+        }
+      },
+      "last_updated": "2026-04-12T08:51:06.017340Z"
+    },
+    {
+      "id": "th_bangkok",
+      "country": "Thailand",
+      "region": "Bangkok",
+      "coordinates": {
+        "lat": 13.76,
+        "lon": 100.5
+      },
+      "current": {
+        "temp_c": 35,
+        "humidity_pct": 43,
+        "wind_kmh": 13.9,
+        "wind_dir": 170,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 36,
+          "low_c": 28
+        },
+        "tomorrow": {
+          "high_c": 36,
+          "low_c": 28
+        }
+      },
+      "last_updated": "2026-04-12T08:51:07.352939Z"
+    },
+    {
+      "id": "vn_vinhlong",
+      "country": "Vietnam",
+      "region": "Vinh Long",
+      "coordinates": {
+        "lat": 10.25,
+        "lon": 105.98
+      },
+      "current": {
+        "temp_c": 36,
+        "humidity_pct": 40,
+        "wind_kmh": 6.6,
+        "wind_dir": 167,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 36,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 36,
+          "low_c": 25
+        }
+      },
+      "last_updated": "2026-04-12T08:51:08.864349Z"
+    },
+    {
+      "id": "id_riau",
+      "country": "Indonesia",
+      "region": "Indragiri Hilir (Kateman)",
+      "coordinates": {
+        "lat": -0.35,
+        "lon": 103.2
+      },
+      "current": {
+        "temp_c": 30,
+        "humidity_pct": 71,
+        "wind_kmh": 5.9,
+        "wind_dir": 101,
+        "precip_mm": 0.8
+      },
+      "forecast": {
+        "today": {
+          "high_c": 31,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 32,
+          "low_c": 25
+        }
+      },
+      "last_updated": "2026-04-12T08:51:10.194942Z"
+    }
+  ]
+}
