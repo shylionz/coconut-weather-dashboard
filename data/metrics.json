@@ -3,10 +3,10 @@
     {
       "id": "ph_davao",
       "rainfall_7d": 92.6,
-      "rainfall_30d": 196.99999999999997,
+      "rainfall_30d": 197.0,
       "rainy_days_30d": 30,
       "current_dry_spell": 0,
-      "hot_days_30d": 30,
+      "hot_days_30d": 18,
       "status": "Watch"
     },
     {
@@ -15,61 +15,61 @@
       "rainfall_30d": 73.9,
       "rainy_days_30d": 13,
       "current_dry_spell": 0,
-      "hot_days_30d": 30,
+      "hot_days_30d": 9,
       "status": "Watch"
     },
     {
       "id": "ph_palawan",
       "rainfall_7d": 36.9,
-      "rainfall_30d": 47.00000000000001,
+      "rainfall_30d": 47.0,
       "rainy_days_30d": 18,
       "current_dry_spell": 0,
-      "hot_days_30d": 24,
+      "hot_days_30d": 0,
       "status": "Watch"
     },
     {
       "id": "ph_batangas",
       "rainfall_7d": 7.4,
-      "rainfall_30d": 10.399999999999999,
+      "rainfall_30d": 10.4,
       "rainy_days_30d": 10,
-      "current_dry_spell": 7,
+      "current_dry_spell": 1,
       "hot_days_30d": 30,
       "status": "Alert"
     },
     {
       "id": "ph_generalsantos",
-      "rainfall_7d": 24.600000000000005,
+      "rainfall_7d": 24.6,
       "rainfall_30d": 78.5,
       "rainy_days_30d": 28,
       "current_dry_spell": 0,
-      "hot_days_30d": 30,
+      "hot_days_30d": 23,
       "status": "Watch"
     },
     {
       "id": "lk_colombo",
       "rainfall_7d": 26.3,
-      "rainfall_30d": 113.19999999999999,
+      "rainfall_30d": 113.2,
       "rainy_days_30d": 29,
+      "current_dry_spell": 0,
+      "hot_days_30d": 9,
+      "status": "Normal"
+    },
+    {
+      "id": "th_bangkok",
+      "rainfall_7d": 15.1,
+      "rainfall_30d": 44.1,
+      "rainy_days_30d": 18,
       "current_dry_spell": 0,
       "hot_days_30d": 30,
       "status": "Watch"
     },
     {
-      "id": "th_bangkok",
-      "rainfall_7d": 15.1,
-      "rainfall_30d": 44.09999999999999,
-      "rainy_days_30d": 18,
-      "current_dry_spell": 8,
-      "hot_days_30d": 30,
-      "status": "Alert"
-    },
-    {
       "id": "vn_vinhlong",
-      "rainfall_7d": 0.6000000000000001,
-      "rainfall_30d": 1.8000000000000003,
+      "rainfall_7d": 0.6,
+      "rainfall_30d": 1.8,
       "rainy_days_30d": 6,
-      "current_dry_spell": 11,
-      "hot_days_30d": 30,
+      "current_dry_spell": 1,
+      "hot_days_30d": 25,
       "status": "Alert"
     },
     {
@@ -78,8 +78,8 @@
       "rainfall_30d": 326.9,
       "rainy_days_30d": 30,
       "current_dry_spell": 0,
-      "hot_days_30d": 27,
-      "status": "Watch"
+      "hot_days_30d": 1,
+      "status": "Normal"
     }
   ]
 }
