@@ -1,50 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
   <title>Coconut Weather Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 24px;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    h2 {
-      margin-top: 28px;
-      padding-bottom: 6px;
-      border-bottom: 2px solid #ddd;
-    }
-    .card {
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .alert {
-      background-color: #ffe5e5;
-    }
-    .watch {
-      background-color: #fff4e5;
-    }
-    .normal {
-      background-color: #e5ffe5;
-    }
-    .title {
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    .alert .title {
-      color: #c00;
-    }
-    .watch .title {
-      color: #f80;
-    }
-    .normal .title {
-      color: #060;
-    }
-  </style>
 </head>
 <body>
   <h1>Coconut Weather Dashboard</h1>
@@ -59,63 +16,104 @@
         const output = document.getElementById('output');
         output.innerHTML = '';
 
-        const groups = {
-          Alert: [],
-          Watch: [],
-          Normal: []
-        };
-
         const combined = snapshot.locations.map(loc => {
           const m = metrics.locations.find(x => x.id === loc.id);
           if (!m) return null;
 
           return {
             region: loc.region,
-            temp: loc.current.temp_c,
             status: m.status,
-            rain: m.rainfall_30d,
-            dry: m.current_dry_spell
+            rain_30d: m.rainfall_30d,
+            rain_180d: m.rainfall_180d,
+            rain_270d: m.rainfall_270d,
+            rain_365d: m.rainfall_365d,
+            rainy_days_180d: m.rainy_days_180d,
+            dry: m.current_dry_spell,
+            hot_30d: m.hot_days_30d
           };
-        }).filter(Boolean);
+        }).filter(x => x !== null);
 
+        const groups = { Alert: [], Watch: [], Normal: [] };
         combined.forEach(item => {
-          if (groups[item.status]) {
-            groups[item.status].push(item);
-          }
+          if (groups[item.status]) groups[item.status].push(item);
         });
 
+        // Sort within each section: highest dry spell first, then lowest rainfall_30d
         Object.keys(groups).forEach(key => {
           groups[key].sort((a, b) => {
-            if (b.dry !== a.dry) return b.dry - a.dry;
-            return a.rain - b.rain;
+            if (b.dry !== a.dry) return b.dry - a.dry;  // highest dry spell first
+            return a.rain_30d - b.rain_30d;  // then lowest rainfall_30d
           });
         });
 
-        ['Alert', 'Watch', 'Normal'].forEach(status => {
-          const section = document.createElement('div');
+        const sectionOrder = ['Alert', 'Watch', 'Normal'];
 
+        sectionOrder.forEach(status => {
+          const section = document.createElement('div');
+          
           const header = document.createElement('h2');
           header.textContent = status;
+          header.style.cssText = 'margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px; font-weight: bold;';
           section.appendChild(header);
 
+          const container = document.createElement('div');
+          
           groups[status].forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card ' + status.toLowerCase();
+            const div = document.createElement('div');
 
-            card.innerHTML =
-              '<div class="title">' + item.region + ' | ' + item.status + '</div>' +
-              '<div>Temp: ' + item.temp + '°C</div>' +
-              '<div>Rainfall (30d): ' + item.rain + 'mm</div>' +
-              '<div>Dry spell: ' + item.dry + ' days</div>';
+            const bgColor =
+              item.status === 'Alert' ? '#ffe5e5' :
+              item.status === 'Watch' ? '#fff4e5' :
+              '#e5ffe5';
 
-            section.appendChild(card);
+            const textColor =
+              item.status === 'Alert' ? '#c00' :
+              item.status === 'Watch' ? '#f80' :
+              '#060';
+
+            // Calculate trend signal
+            const avg_30d = item.rain_30d / 30;
+            const avg_180d = item.rain_180d / 180;
+            let trend = 'Stable';
+            if (avg_30d < avg_180d * 0.8) {
+              trend = 'Worsening';
+            } else if (avg_30d > avg_180d * 1.2) {
+              trend = 'Recovering';
+            }
+
+            div.style.cssText = 
+              'padding: 10px; margin: 8px; border: 1px solid #ccc; border-radius: 6px; background-color: ' + bgColor + ';';
+
+            div.innerHTML =
+              '<div style="font-weight: bold; color: ' + textColor + '">' +
+              item.region + ' — ' + item.status +
+              '</div>' +
+              '<div style="margin-top: 6px;">' +
+              '<strong>Current Stress</strong>' +
+              '</div>' +
+              '<div style="margin-left: 10px;">Dry spell: ' + item.dry + ' days</div>' +
+              '<div style="margin-left: 10px;">30d rainfall: ' + item.rain_30d + 'mm</div>' +
+              '<div style="margin-left: 10px;">Hot days (30d): ' + item.hot_30d + '</div>' +
+              '<div style="margin-top: 6px;">' +
+              '<strong>Structural Moisture</strong>' +
+              '</div>' +
+              '<div style="margin-left: 10px;">180d rainfall: ' + item.rain_180d + 'mm</div>' +
+              '<div style="margin-left: 10px;">270d rainfall: ' + item.rain_270d + 'mm</div>' +
+              '<div style="margin-left: 10px;">365d rainfall: ' + item.rain_365d + 'mm</div>' +
+              '<div style="margin-left: 10px;">Rainy days (180d): ' + item.rainy_days_180d + '</div>' +
+              '<div style="margin-top: 6px; margin-bottom: 6px;">' +
+              '<strong>Trend Signal: ' + trend + '</strong>' +
+              '</div>';
+
+            container.appendChild(div);
           });
 
+          section.appendChild(container);
           output.appendChild(section);
         });
 
       } catch (err) {
-        document.getElementById('output').textContent = 'Error loading data';
+        document.getElementById('output').textContent = "Error loading data";
         console.error(err);
       }
     }
