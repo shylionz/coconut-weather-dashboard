@@ -74,30 +74,28 @@
             // Calculate trend signal
             const avg_30d = item.rainfall_30d / 30;
             const avg_180d = item.rainfall_180d / 180;
+
             let trend = 'Stable';
+
+            const stress30d = item.rainfall_30d < 100;
+            const stress180d = item.rainfall_180d < 600;
+            const dryStress = item.current_dry_spell >= 20;
+            const heatStress = item.hot_days_30d >= 6;
+
             if (avg_30d < avg_180d * 0.8) {
-              trend = 'Worsening';
+              if (stress30d || stress180d || dryStress || heatStress) {
+                trend = "Worsening";
+              } else {
+                trend = "Stable";
+              }
             } else if (avg_30d > avg_180d * 1.2) {
-              trend = 'Recovering';
+              trend = "Recovering";
             }
-
-            // Risk insight logic
-            let riskInsight = "Stable conditions. No immediate risk.";
-            if (item.current_dry_spell >= 7 && item.rainfall_30d < 40) {
-              riskInsight = "Active drought stress. Near-term yield pressure likely.";
-            } else if (item.rainfall_30d < (item.rainfall_180d / 6)) {
-              riskInsight = "Moisture trending below seasonal norm. Risk building.";
-            } else if (trend === "Recovering") {
-              riskInsight = "Conditions improving. Stress easing.";
-            }
-
-            div.style.cssText = 
-              'padding: 10px; margin: 8px; border: 1px solid #ccc; border-radius: 6px; background-color: ' + bgColor + ';';
 
             const trendColor =
- trend === "Worsening" ? "#c00" :
- trend === "Recovering" ? "#060" :
- "#555";
+              trend === "Worsening" ? "#c00" :
+              trend === "Recovering" ? "#060" :
+              "#555";
 
             div.innerHTML =
               '<div style="font-size: 18px; font-weight: bold; margin-bottom: 6px;">' +
