@@ -1,7 +1,88 @@
 {
-  "generated_at": "2026-05-02T23:30:31.540731Z",
+  "generated_at": "2026-05-03T00:07:17.160894Z",
   "source": "open-meteo",
   "locations": [
+    {
+      "id": "ph_davao",
+      "country": "Philippines",
+      "region": "Davao",
+      "coordinates": {
+        "lat": 7.07,
+        "lon": 125.6
+      },
+      "current": {
+        "temp_c": 27,
+        "humidity_pct": 91,
+        "wind_kmh": 6.3,
+        "wind_dir": 358,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 31,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 32,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-05-03T00:07:05.361396Z"
+    },
+    {
+      "id": "ph_cagayan",
+      "country": "Philippines",
+      "region": "Cagayan de Oro",
+      "coordinates": {
+        "lat": 8.48,
+        "lon": 124.64
+      },
+      "current": {
+        "temp_c": 30,
+        "humidity_pct": 76,
+        "wind_kmh": 0.4,
+        "wind_dir": 27,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 31,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 32,
+          "low_c": 25
+        }
+      },
+      "last_updated": "2026-05-03T00:07:06.854746Z"
+    },
+    {
+      "id": "ph_palawan",
+      "country": "Philippines",
+      "region": "Puerto Princesa",
+      "coordinates": {
+        "lat": 9.75,
+        "lon": 118.77
+      },
+      "current": {
+        "temp_c": 27,
+        "humidity_pct": 94,
+        "wind_kmh": 4.4,
+        "wind_dir": 32,
+        "precip_mm": 1.7
+      },
+      "forecast": {
+        "today": {
+          "high_c": 30,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 28,
+          "low_c": 25
+        }
+      },
+      "last_updated": "2026-05-03T00:07:08.379140Z"
+    },
     {
       "id": "ph_batangas",
       "country": "Philippines",
@@ -12,9 +93,9 @@
       },
       "current": {
         "temp_c": 30,
-        "humidity_pct": 83,
-        "wind_kmh": 11.0,
-        "wind_dir": 105,
+        "humidity_pct": 72,
+        "wind_kmh": 13.4,
+        "wind_dir": 97,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -27,7 +108,7 @@
           "low_c": 26
         }
       },
-      "last_updated": "2026-05-02T23:30:20.594079Z"
+      "last_updated": "2026-05-03T00:07:09.707946Z"
     },
     {
       "id": "ph_generalsantos",
@@ -38,10 +119,10 @@
         "lon": 125.17
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 94,
-        "wind_kmh": 3.2,
-        "wind_dir": 360,
+        "temp_c": 28,
+        "humidity_pct": 84,
+        "wind_kmh": 2.9,
+        "wind_dir": 30,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -54,7 +135,7 @@
           "low_c": 23
         }
       },
-      "last_updated": "2026-05-02T23:30:23.565040Z"
+      "last_updated": "2026-05-03T00:07:11.257155Z"
     },
     {
       "id": "lk_colombo",
@@ -66,10 +147,10 @@
       },
       "current": {
         "temp_c": 26,
-        "humidity_pct": 92,
-        "wind_kmh": 6.7,
-        "wind_dir": 164,
-        "precip_mm": 0.0
+        "humidity_pct": 89,
+        "wind_kmh": 6.5,
+        "wind_dir": 172,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
@@ -81,7 +162,7 @@
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-02T23:30:25.922238Z"
+      "last_updated": "2026-05-03T00:07:12.743876Z"
     },
     {
       "id": "th_bangkok",
@@ -92,10 +173,10 @@
         "lon": 100.5
       },
       "current": {
-        "temp_c": 29,
-        "humidity_pct": 80,
-        "wind_kmh": 5.1,
-        "wind_dir": 203,
+        "temp_c": 30,
+        "humidity_pct": 78,
+        "wind_kmh": 5.2,
+        "wind_dir": 214,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -108,7 +189,7 @@
           "low_c": 27
         }
       },
-      "last_updated": "2026-05-02T23:30:27.919347Z"
+      "last_updated": "2026-05-03T00:07:14.227515Z"
     },
     {
       "id": "vn_vinhlong",
@@ -119,10 +200,10 @@
         "lon": 105.98
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 93,
-        "wind_kmh": 6.4,
-        "wind_dir": 126,
+        "temp_c": 28,
+        "humidity_pct": 87,
+        "wind_kmh": 6.1,
+        "wind_dir": 122,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -135,7 +216,7 @@
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-02T23:30:29.818682Z"
+      "last_updated": "2026-05-03T00:07:15.762923Z"
     },
     {
       "id": "id_riau",
@@ -146,10 +227,10 @@
         "lon": 103.2
       },
       "current": {
-        "temp_c": 24,
-        "humidity_pct": 98,
-        "wind_kmh": 4.2,
-        "wind_dir": 258,
+        "temp_c": 25,
+        "humidity_pct": 96,
+        "wind_kmh": 4.9,
+        "wind_dir": 268,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -162,7 +243,7 @@
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-02T23:30:31.540064Z"
+      "last_updated": "2026-05-03T00:07:17.160119Z"
     }
   ]
 }
