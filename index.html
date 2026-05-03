@@ -39,12 +39,11 @@ function projectStress(loc,n){
   return {...c,months};
 }
 function driverText(c){
-  const drought=c.under50>=2||c.maxConsecUnder50>=2, heat=c.hotDays35>=10?'significant heat':c.hotDays35>0?'some heat':'low heat';
-  if(drought&&c.hotDays35>=10)return `Driver: Drought + significant heat · Heat: ${c.hotDays35} days >35°C`;
-  if(drought)return `Driver: Drought · Heat: ${c.hotDays35} days >35°C (${heat})`;
-  if(c.hotDays35>=10)return `Driver: Significant heat · Heat: ${c.hotDays35} days >35°C`;
-  if(c.hotDays35>0)return `Driver: Some heat · Heat: ${c.hotDays35} days >35°C`;
-  return `Driver: Balanced · Heat: ${c.hotDays35} days >35°C (low heat)`;
+  const drought=c.under50>=2||c.maxConsecUnder50>=2, heat=c.hotDays35>0;
+  if(drought&&heat)return `Driver: Drought + Heat (${c.hotDays35} days >35°C)`;
+  if(drought)return 'Driver: Drought';
+  if(heat)return `Driver: Heat (${c.hotDays35} days >35°C)`;
+  return 'Driver: Balanced';
 }
 function projColor(label){return label=='Stable'?'#22C55E':label=='Watch'?'#EAB308':label=='Mild Stress'?'#F97316':'#DC2626';}
 function projRank(label){return label=='Stable'?0:label=='Watch'?1:label=='Mild Stress'?2:3;}
