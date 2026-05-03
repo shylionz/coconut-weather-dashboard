@@ -38,8 +38,9 @@ function projectStress(loc,n){
 function projColor(label){return label=='Stable'?'#22C55E':label=='Watch'?'#EAB308':label=='Mild Stress'?'#F97316':'#DC2626';}
 function projRank(label){return label=='Stable'?0:label=='Watch'?1:label=='Mild Stress'?2:3;}
 function trendLabel(ps){
-  const a=projRank(ps[0].label), b=projRank(ps[2].label);
-  return b>a?'Deteriorating ↓':b<a?'Improving ↑':'Stable →';
+  const seq=ps.map(p=>projRank(p.label)), first=seq[0], last=seq[2];
+  if(seq.every(v=>v===3))return 'Persistently Severe ⚠️';
+  return last>first?'Deteriorating ↓':last<first?'Improving ↑':'Stable →';
 }
 function next3(loc){
   const ps=[1,2,3].map(n=>projectStress(loc,n)), base=projRank(ps[0].label);
