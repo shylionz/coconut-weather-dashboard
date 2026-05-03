@@ -20,13 +20,23 @@ const C={red:'#DC2626',yellow:'#F59E0B',green:'#22C55E',muted:'#c9c2b4',hot:'#a2
 const fmtDate=s=>s?new Date(s).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):'n/a';
 const mon=s=>new Date(s+'-01T00:00:00').toLocaleString([],{month:'short'});
 const rainColor=v=>v==null?C.muted:v<50?C.red:v<130?C.yellow:C.green;
+function monthStress(vals){
+  const severe=vals.filter(v=>v!=null&&v<50).length, mild=vals.filter(v=>v>=50&&v<130).length;
+  return {severe,mild};
+}
 function harvestStress(loc){
-  const recent=loc.rain.slice(-6), severeMonths=recent.filter(v=>v!=null&&v<50).length, yellowMonths=recent.filter(v=>v>=50&&v<130).length;
-  const formed=loc.days.filter(d=>d[0]>=-14&&d[0]<=-2), strongHeat=formed.filter(d=>d[1]>35).length>=3||formed.some(d=>d[1]>38), warm=formed.some(d=>d[1]>33);
-  if(severeMonths>=3||strongHeat)return 'Severe Stress';
-  if(yellowMonths||warm||severeMonths)return 'Mild Stress';
+  const {severe,mild}=monthStress(loc.rain.slice(0,-2));
+  if(severe>=3)return 'Severe Stress';
+  if(severe||mild)return 'Mild Stress';
   return 'Stable';
 }
+function futureRisk(loc){
+  const {severe,mild}=monthStress(loc.rain.slice(-4));
+  if(severe>=2)return 'Critical';
+  if(severe||mild>=2)return 'Watch';
+  return 'Normal';
+}
+function stressCounts(loc){return monthStress(loc.rain.slice(0,-2));}
 function rainfallSvg(loc){
   const w=330,h=150,l=28,r=10,t=12,b=28,plot=h-t-b,max=Math.max(150,...loc.rain.filter(v=>v!=null));
   const y=v=>t+plot-(Math.min(v,max)/max)*plot, bw=(w-l-r)/14-5, x=i=>l+i*((w-l-r)/14)+2.5;
@@ -46,7 +56,7 @@ function timelineSvg(loc){
 }
 function card(loc){
  const n=loc.now||{}, f=loc.forecast||{}, m=loc.metrics;
- return `<section class="card"><div class="top"><div><h2>${loc.name}</h2><div class="small">${loc.country} · ${loc.id}</div><span class="risk ${loc.risk}">${loc.risk}</span></div><div class="stamp">updated<br>${fmtDate(loc.updated)}</div></div><div class="insight">${loc.insight}</div><div class="cols"><div class="col"><div class="label">NOW</div><div class="big">${n.temp_c??'—'}°C</div><div class="small">Rain ${n.precip_mm??'—'} mm · RH ${n.humidity_pct??'—'}%</div></div><div class="col"><div class="label">HARVEST TODAY</div><div class="big" style="font-size:17px">Formed under: ${harvestStress(loc)}</div><div class="small">${m.u130} months &lt;130mm · ${m.u50} months &lt;50mm</div></div><div class="col"><div class="label">FUTURE</div><div class="big">${f.tomorrow?.high_c??'—'}°</div><div class="small">Dry months ${m.u50} · streak ${m.streak}</div></div></div><div class="chartTitle"><b>Monthly rainfall</b><span>&lt;50 red · 50–130 yellow · &gt;130 green</span></div>${rainfallSvg(loc)}<div class="chartTitle"><b>Timeline</b><span>dry blocks · heat markers</span></div>${timelineSvg(loc)}<div class="legend"><span><i class="sw" style="background:${C.red}"></i>&lt;50mm month</span><span><i class="sw" style="background:${C.yellow}"></i>50–130mm</span><span><i class="sw" style="background:${C.hot}"></i>&gt;33°C</span><span><i class="sw" style="background:${C.hot2}"></i>&gt;35°C</span></div><div class="foot">12-month counts: under130=${m.u130}, under50=${m.u50}, hot33=${m.h33}, hot38=${m.h38}</div></section>`;
+ return `<section class="card"><div class="top"><div><h2>${loc.name}</h2><div class="small">${loc.country} · ${loc.id}</div><span class="risk ${loc.risk}">${loc.risk}</span></div><div class="stamp">updated<br>${fmtDate(loc.updated)}</div></div><div class="insight">${loc.insight}</div><div class="cols"><div class="col"><div class="label">NOW</div><div class="big">${n.temp_c??'—'}°C</div><div class="small">Rain ${n.precip_mm??'—'} mm · RH ${n.humidity_pct??'—'}%</div></div><div class="col"><div class="label">HARVEST TODAY</div><div class="small">Current harvest formed under:</div><div class="big" style="font-size:17px">${harvestStress(loc)}</div><div class="small">${stressCounts(loc).mild+stressCounts(loc).severe} months &lt;130mm · ${stressCounts(loc).severe} months &lt;50mm</div></div><div class="col"><div class="label">FUTURE</div><div class="small">Future formation risk:</div><div class="big" style="font-size:17px">${futureRisk(loc)}</div><div class="small">recent T-3 to T0 stress</div></div></div><div class="chartTitle"><b>Monthly rainfall</b><span>&lt;50 red · 50–130 yellow · &gt;130 green</span></div>${rainfallSvg(loc)}<div class="chartTitle"><b>Timeline</b><span>dry blocks · heat markers</span></div>${timelineSvg(loc)}<div class="legend"><span><i class="sw" style="background:${C.red}"></i>&lt;50mm month</span><span><i class="sw" style="background:${C.yellow}"></i>50–130mm</span><span><i class="sw" style="background:${C.hot}"></i>&gt;33°C</span><span><i class="sw" style="background:${C.hot2}"></i>&gt;35°C</span></div><div class="foot">12-month counts: under130=${m.u130}, under50=${m.u50}, hot33=${m.h33}, hot38=${m.h38}</div></section>`;
 }
 document.getElementById('app').innerHTML=DATA.locations.map(card).join('');
 </script>
