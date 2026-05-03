@@ -1,137 +1,46 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Coconut Weather Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coconut Weather Dashboard</title>
+<style>
+:root{--bg:#f6f5ef;--card:#fffdf7;--ink:#1f2a24;--muted:#66736c;--line:#d8d2c4;--green:#278747;--yellow:#d6a51d;--red:#c74343;--hot:#a23cff}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 system-ui,-apple-system,Segoe UI,sans-serif} header{padding:22px 24px 8px} h1{margin:0;font-size:26px} .sub{color:var(--muted);margin-top:4px} main{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px;padding:16px 24px 28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 2px 8px #0000000d} .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start} h2{margin:0;font-size:19px} .stamp{color:var(--muted);font-size:11px;text-align:right} .risk{display:inline-block;margin-top:6px;border-radius:999px;padding:3px 8px;font-weight:700;font-size:11px;letter-spacing:.03em} .CRITICAL{background:#ffe4e1;color:#9d1d1d} .ELEVATED{background:#fff0c8;color:#805600} .WATCH{background:#e7f0ff;color:#24548f} .NORMAL{background:#e8f5e8;color:#17652d}
+.insight{margin:12px 0;color:#29372f;font-weight:650} .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px} .col{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff} .label{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.07em} .big{font-size:22px;font-weight:800;margin-top:4px} .small{color:var(--muted);font-size:12px} svg{width:100%;height:auto;display:block} .chartTitle{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin:10px 0 4px} .legend{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:8px} .sw{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px} .foot{color:var(--muted);font-size:11px;margin-top:10px}
+</style>
 </head>
 <body>
-  <h1>Coconut Weather Dashboard</h1>
-  <div id="output">Loading...</div>
-
-  <script>
-    async function loadData() {
-      try {
-        const snapshot = await fetch('data/snapshot.json').then(r => r.json());
-        const metrics = await fetch('data/metrics.json').then(r => r.json());
-
-        const output = document.getElementById('output');
-        output.innerHTML = '';
-
-        const combined = snapshot.locations.map(loc => {
-          const m = metrics.locations.find(x => x.id === loc.id);
-          if (!m) return null;
-
-          return {
-            region: loc.region,
-            status: m.status,
-            rain_30d: m.rainfall_30d,
-            rain_180d: m.rainfall_180d,
-            rain_270d: m.rainfall_270d,
-            rain_365d: m.rainfall_365d,
-            rainy_days_180d: m.rainy_days_180d,
-            dry: m.current_dry_spell,
-            hot_30d: m.hot_days_30d
-          };
-        }).filter(x => x !== null);
-
-        const groups = { Alert: [], Watch: [], Normal: [] };
-        combined.forEach(item => {
-          if (groups[item.status]) groups[item.status].push(item);
-        });
-
-        // Sort within each section: highest dry spell first, then lowest rainfall_30d
-        Object.keys(groups).forEach(key => {
-          groups[key].sort((a, b) => {
-            if (b.dry !== a.dry) return b.dry - a.dry;  // highest dry spell first
-            return a.rain_30d - b.rain_30d;  // then lowest rainfall_30d
-          });
-        });
-
-        const sectionOrder = ['Alert', 'Watch', 'Normal'];
-
-        sectionOrder.forEach(status => {
-          const section = document.createElement('div');
-          
-          const header = document.createElement('h2');
-          header.textContent = status;
-          header.style.cssText = 'margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #ccc; padding-bottom: 5px; font-weight: bold;';
-          section.appendChild(header);
-
-          const container = document.createElement('div');
-          
-          groups[status].forEach(item => {
-            const div = document.createElement('div');
-
-            const bgColor =
-              item.status === 'Alert' ? '#ffe5e5' :
-              item.status === 'Watch' ? '#fff4e5' :
-              '#e5ffe5';
-
-            const textColor =
-              item.status === 'Alert' ? '#c00' :
-              item.status === 'Watch' ? '#f80' :
-              '#060';
-
-            // Calculate trend signal
-            const avg_30d = item.rain_30d / 30;
-            const avg_180d = item.rain_180d / 180;
-            let trend = 'Stable';
-            if (avg_30d < avg_180d * 0.8) {
-              trend = 'Worsening';
-            } else if (avg_30d > avg_180d * 1.2) {
-              trend = 'Recovering';
-            }
-
-            // Risk insight logic
-            let riskInsight = "Stable conditions. No immediate risk.";
-            if (item.dry >= 7 && item.rain_30d < 40) {
-              riskInsight = "Active drought stress. Near-term yield pressure likely.";
-            } else if (item.rain_30d < (item.rain_180d / 6)) {
-              riskInsight = "Moisture trending below seasonal norm. Risk building.";
-            } else if (trend === "Recovering") {
-              riskInsight = "Conditions improving. Stress easing.";
-            }
-
-            div.style.cssText = 
-              'padding: 10px; margin: 8px; border: 1px solid #ccc; border-radius: 6px; background-color: ' + bgColor + ';';
-
-            div.innerHTML =
-              '<div style="font-weight: bold; color: ' + textColor + '">' +
-              item.region + ' — ' + item.status +
-              '</div>' +
-              '<div style="font-size: 13px; color: #555; margin-top: 4px;">' +
-              riskInsight +
-              '</div>' +
-              '<div style="margin-top: 6px;">' +
-              '<strong>Current Stress</strong>' +
-              '</div>' +
-              '<div style="margin-left: 10px;">Dry spell: ' + item.dry + ' days</div>' +
-              '<div style="margin-left: 10px;">30d rainfall: ' + item.rain_30d + 'mm</div>' +
-              '<div style="margin-left: 10px;">Hot days (30d): ' + item.hot_30d + '</div>' +
-              '<div style="margin-top: 6px;">' +
-              '<strong>Structural Moisture</strong>' +
-              '</div>' +
-              '<div style="margin-left: 10px;">180d rainfall: ' + item.rain_180d + 'mm</div>' +
-              '<div style="margin-left: 10px;">270d rainfall: ' + item.rain_270d + 'mm</div>' +
-              '<div style="margin-left: 10px;">365d rainfall: ' + item.rain_365d + 'mm</div>' +
-              '<div style="margin-left: 10px;">Rainy days (180d): ' + item.rainy_days_180d + '</div>' +
-              '<div style="margin-top: 6px; margin-bottom: 6px;">' +
-              '<strong>Trend Signal: ' + trend + '</strong>' +
-              '</div>';
-
-            container.appendChild(div);
-          });
-
-          section.appendChild(container);
-          output.appendChild(section);
-        });
-
-      } catch (err) {
-        document.getElementById('output').textContent = "Error loading data";
-        console.error(err);
-      }
-    }
-
-    loadData();
-  </script>
+<header><h1>Coconut Weather Dashboard</h1><div class="sub">Rainfall, heat, and yield-risk view. Data generated 2026-05-03T00:07:17.160894Z</div></header>
+<main id="app"></main>
+<script>
+const DATA={"generated_at":"2026-05-03T00:07:17.160894Z","locations":[{"id":"th_bangkok","name":"Bangkok","country":"Thailand","updated":"2026-05-03T00:07:14.227515Z","now":{"temp_c":30,"humidity_pct":78,"wind_kmh":5.2,"wind_dir":214,"precip_mm":0.0},"forecast":{"today":{"high_c":37,"low_c":29},"tomorrow":{"high_c":36,"low_c":27}},"risk":"CRITICAL","insight":"Future yield at risk due to sustained dry period","metrics":{"u130":6,"u50":6,"streak":6,"h33":129,"h35":41,"h38":2},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,231.8,184.6,217.0,183.4,263.7,182.8,169.3,9.2,14.4,34.7,22.8,44.0,4.6],"days":[[-14,36.3,0.4],[-13,34.8,4.3],[-12,35.8,2.4],[-11,33.5,2.0],[-10,35.5,1.3],[-9,34.5,6.5],[-8,33.5,2.2],[-7,35.0,0.1],[-6,35.0,1.6],[-5,36.5,0.0],[-4,36.0,3.7],[-3,36.5,7.8],[-2,34.5,0.8],[-1,35.8,0.7],[0,35.8,3.9],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"ph_batangas","name":"Batangas","country":"Philippines","updated":"2026-05-03T00:07:09.707946Z","now":{"temp_c":30,"humidity_pct":72,"wind_kmh":13.4,"wind_dir":97,"precip_mm":0.0},"forecast":{"today":{"high_c":35,"low_c":25},"tomorrow":{"high_c":35,"low_c":26}},"risk":"CRITICAL","insight":"Future yield at risk due to sustained dry period","metrics":{"u130":6,"u50":3,"streak":3,"h33":62,"h35":17,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,124.0,275.8,267.5,247.6,292.1,282.7,278.3,122.1,63.7,65.2,20.6,10.4,3.5],"days":[[-14,34.0,0.0],[-13,33.9,0.4],[-12,34.5,0.1],[-11,34.3,0.1],[-10,34.6,0.0],[-9,34.5,0.3],[-8,35.7,0.0],[-7,35.5,0.0],[-6,36.3,0.0],[-5,35.4,1.4],[-4,34.2,2.7],[-3,35.3,3.2],[-2,35.6,0.1],[-1,35.8,0.0],[0,35.4,3.5],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"vn_vinhlong","name":"Vinh Long","country":"Vietnam","updated":"2026-05-03T00:07:15.762923Z","now":{"temp_c":28,"humidity_pct":87,"wind_kmh":6.1,"wind_dir":122,"precip_mm":0.0},"forecast":{"today":{"high_c":34,"low_c":26},"tomorrow":{"high_c":34,"low_c":25}},"risk":"CRITICAL","insight":"Future yield at risk due to sustained dry period","metrics":{"u130":6,"u50":4,"streak":3,"h33":30,"h35":4,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,314.6,340.7,245.7,338.7,336.3,283.5,237.9,120.4,12.5,69.4,18.9,1.8,2.1],"days":[[-14,34.0,0.0],[-13,33.6,0.4],[-12,33.4,0.7],[-11,32.8,0.0],[-10,32.9,0.0],[-9,33.8,0.0],[-8,34.8,0.0],[-7,33.5,0.2],[-6,34.5,0.0],[-5,34.7,0.0],[-4,35.5,0.1],[-3,34.2,0.0],[-2,34.8,0.3],[-1,35.5,0.0],[0,32.8,2.1],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"lk_colombo","name":"Colombo","country":"Sri Lanka","updated":"2026-05-03T00:07:12.743876Z","now":{"temp_c":26,"humidity_pct":89,"wind_kmh":6.5,"wind_dir":172,"precip_mm":0.1},"forecast":{"today":{"high_c":31,"low_c":26},"tomorrow":{"high_c":31,"low_c":25}},"risk":"ELEVATED","insight":"Yield risk elevated; rainfall and heat stress need watching","metrics":{"u130":6,"u50":1,"streak":1,"h33":26,"h35":0,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,271.0,305.1,262.2,171.3,252.8,256.5,556.3,122.2,68.7,124.9,71.3,122.8,5.5],"days":[[-14,31.5,1.4],[-13,32.0,1.6],[-12,32.7,9.4],[-11,32.6,9.9],[-10,33.2,0.9],[-9,33.2,1.8],[-8,31.0,4.0],[-7,34.1,1.7],[-6,34.4,4.4],[-5,32.6,5.6],[-4,33.3,0.5],[-3,33.1,8.3],[-2,32.8,7.8],[-1,31.9,4.0],[0,32.7,1.5],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"ph_generalsantos","name":"General Santos","country":"Philippines","updated":"2026-05-03T00:07:11.257155Z","now":{"temp_c":28,"humidity_pct":84,"wind_kmh":2.9,"wind_dir":30,"precip_mm":0.0},"forecast":{"today":{"high_c":32,"low_c":23},"tomorrow":{"high_c":32,"low_c":23}},"risk":"ELEVATED","insight":"Yield risk elevated; rainfall and heat stress need watching","metrics":{"u130":6,"u50":1,"streak":1,"h33":140,"h35":42,"h38":1},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,228.5,204.6,70.6,173.1,152.6,163.0,164.3,120.5,99.7,132.2,86.9,67.9,34.9],"days":[[-14,33.8,1.0],[-13,34.5,1.5],[-12,34.9,1.2],[-11,35.7,0.5],[-10,36.1,0.1],[-9,35.2,3.1],[-8,37.8,0.1],[-7,38.1,2.8],[-6,35.9,9.4],[-5,34.8,0.6],[-4,36.8,0.0],[-3,37.8,1.2],[-2,36.6,0.8],[-1,32.0,18.3],[0,32.4,16.6],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"ph_palawan","name":"Puerto Princesa","country":"Philippines","updated":"2026-05-03T00:07:08.379140Z","now":{"temp_c":27,"humidity_pct":94,"wind_kmh":4.4,"wind_dir":32,"precip_mm":1.7},"forecast":{"today":{"high_c":30,"low_c":25},"tomorrow":{"high_c":28,"low_c":25}},"risk":"ELEVATED","insight":"Yield risk elevated; rainfall and heat stress need watching","metrics":{"u130":3,"u50":2,"streak":2,"h33":0,"h35":0,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,266.2,371.3,340.9,393.8,355.2,368.9,346.1,152.5,168.7,152.6,56.7,39.2,11.3],"days":[[-14,30.6,0.0],[-13,30.5,0.0],[-12,30.8,0.1],[-11,30.7,2.0],[-10,30.4,2.1],[-9,30.8,0.0],[-8,30.6,2.1],[-7,30.8,1.0],[-6,30.8,1.9],[-5,29.8,3.1],[-4,29.0,7.6],[-3,29.2,13.8],[-2,31.0,0.6],[-1,27.5,7.5],[0,30.9,3.8],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"ph_cagayan","name":"Cagayan de Oro","country":"Philippines","updated":"2026-05-03T00:07:06.854746Z","now":{"temp_c":30,"humidity_pct":76,"wind_kmh":0.4,"wind_dir":27,"precip_mm":0.0},"forecast":{"today":{"high_c":31,"low_c":24},"tomorrow":{"high_c":32,"low_c":25}},"risk":"WATCH","insight":"Early weather stress signals are building","metrics":{"u130":3,"u50":1,"streak":1,"h33":23,"h35":0,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,262.6,360.1,170.9,271.0,240.0,342.6,288.0,156.1,130.5,307.6,96.9,50.7,34.9],"days":[[-14,32.5,0.0],[-13,32.2,0.0],[-12,33.7,0.0],[-11,32.8,0.0],[-10,33.7,0.9],[-9,33.0,4.4],[-8,33.5,0.0],[-7,33.9,0.0],[-6,33.7,18.0],[-5,32.7,11.3],[-4,32.5,0.6],[-3,33.5,0.0],[-2,32.0,3.4],[-1,32.7,13.0],[0,32.0,21.9],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"ph_davao","name":"Davao","country":"Philippines","updated":"2026-05-03T00:07:05.361396Z","now":{"temp_c":27,"humidity_pct":91,"wind_kmh":6.3,"wind_dir":358,"precip_mm":0.0},"forecast":{"today":{"high_c":31,"low_c":24},"tomorrow":{"high_c":32,"low_c":24}},"risk":"WATCH","insight":"Early weather stress signals are building","metrics":{"u130":3,"u50":1,"streak":1,"h33":42,"h35":1,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,542.6,291.5,47.2,235.4,188.5,272.1,241.4,362.9,177.5,327.9,82.5,156.5,120.0],"days":[[-14,33.8,0.5],[-13,33.9,1.6],[-12,33.6,1.2],[-11,33.2,2.8],[-10,32.5,6.7],[-9,30.7,12.0],[-8,32.1,9.6],[-7,33.6,17.0],[-6,32.5,16.2],[-5,32.6,3.5],[-4,32.4,6.5],[-3,34.7,0.5],[-2,34.5,5.5],[-1,31.2,59.0],[0,30.2,61.0],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]},{"id":"id_riau","name":"Indragiri Hilir (Kateman)","country":"Indonesia","updated":"2026-05-03T00:07:17.160119Z","now":{"temp_c":25,"humidity_pct":96,"wind_kmh":4.9,"wind_dir":268,"precip_mm":0.0},"forecast":{"today":{"high_c":33,"low_c":24},"tomorrow":{"high_c":31,"low_c":24}},"risk":"WATCH","insight":"Early weather stress signals are building","metrics":{"u130":4,"u50":1,"streak":1,"h33":12,"h35":0,"h38":0},"months":["2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"rain":[null,218.8,156.3,93.1,262.7,285.0,232.5,184.9,309.5,122.8,114.3,174.1,323.5,29.7],"days":[[-14,32.2,18.5],[-13,31.4,10.7],[-12,30.5,17.6],[-11,27.7,15.1],[-10,32.2,0.7],[-9,30.9,0.6],[-8,32.5,7.4],[-7,32.0,3.2],[-6,31.0,17.9],[-5,32.0,17.0],[-4,31.8,2.9],[-3,31.8,14.3],[-2,32.8,1.2],[-1,31.4,26.0],[0,31.5,3.7],[1,null,null],[2,null,null],[3,null,null],[4,null,null],[5,null,null],[6,null,null],[7,null,null],[8,null,null],[9,null,null],[10,null,null],[11,null,null],[12,null,null],[13,null,null],[14,null,null]]}]};
+const C={red:'#DC2626',yellow:'#F59E0B',green:'#22C55E',muted:'#c9c2b4',hot:'#a23cff',hot2:'#ff6b00'};
+const fmtDate=s=>s?new Date(s).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}):'n/a';
+const mon=s=>new Date(s+'-01T00:00:00').toLocaleString([],{month:'short'});
+const rainColor=v=>v==null?C.muted:v<50?C.red:v<130?C.yellow:C.green;
+function rainfallSvg(loc){
+  const w=330,h=150,l=28,r=10,t=12,b=28,plot=h-t-b,max=Math.max(150,...loc.rain.filter(v=>v!=null));
+  const y=v=>t+plot-(Math.min(v,max)/max)*plot, bw=(w-l-r)/14-5, x=i=>l+i*((w-l-r)/14)+2.5;
+  let s=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="14-month rainfall bar chart">`;
+  [[130,'stress'],[50,'severe']].forEach(([v,label])=>{let yy=y(v);s+=`<line x1="${l}" y1="${yy}" x2="${w-r}" y2="${yy}" stroke="${v==50?C.red:C.yellow}" stroke-dasharray="3 3" opacity=".65"/><text x="2" y="${yy+3}" font-size="9" fill="#667">${v}</text>`});
+  loc.rain.forEach((v,i)=>{let xx=x(i), bh=v==null?2:Math.max(3,h-b-y(v)), yy=h-b-bh;
+    s+=`<rect x="${xx}" y="${yy}" width="${bw}" height="${bh}" rx="3" fill="${rainColor(v)}"/><text x="${xx+bw/2}" y="${h-9}" text-anchor="middle" font-size="8" fill="#667">${mon(loc.months[i])}</text>`;});
+  return s+`<line x1="${l}" y1="${h-b}" x2="${w-r}" y2="${h-b}" stroke="#ddd"/><text x="${w-62}" y="10" font-size="9" fill="#667">mm/month</text></svg>`;
+}
+function timelineSvg(loc){
+  const w=330,h=92,x=t=>18+(t+14)/28*294;
+  let s=`<svg viewBox="0 0 ${w} ${h}"><line x1="18" y1="48" x2="312" y2="48" stroke="#9d9688"/><text x="18" y="18" font-size="10" fill="#667">T-14</text><text x="158" y="18" font-size="10" fill="#111" font-weight="700">TODAY</text><text x="292" y="18" font-size="10" fill="#667">T+14</text><line x1="165" y1="24" x2="165" y2="78" stroke="#111" stroke-dasharray="3 3"/>`;
+  loc.rain.slice(-14).forEach((v,i)=>{let xx=18+i*(294/13); if(v==null)return; if(v<50)s+=`<rect x="${xx-6}" y="30" width="12" height="36" rx="3" fill="${C.red}" opacity=".22"/>`; else if(v<130)s+=`<circle cx="${xx}" cy="32" r="3" fill="${C.yellow}"/>`;});
+  loc.days.forEach(d=>{let [t,temp]=d,xx=x(t); if(temp>35)s+=`<path d="M${xx} 64 l4 8 h-8 z" fill="${C.hot2}"/>`; else if(temp>33)s+=`<circle cx="${xx}" cy="68" r="3" fill="${C.hot}"/>`;});
+  return s+`<text x="18" y="86" font-size="10" fill="#667">past actuals</text><text x="242" y="86" font-size="10" fill="#667">future window</text></svg>`;
+}
+function card(loc){
+ const n=loc.now||{}, f=loc.forecast||{}, m=loc.metrics;
+ return `<section class="card"><div class="top"><div><h2>${loc.name}</h2><div class="small">${loc.country} · ${loc.id}</div><span class="risk ${loc.risk}">${loc.risk}</span></div><div class="stamp">updated<br>${fmtDate(loc.updated)}</div></div><div class="insight">${loc.insight}</div><div class="cols"><div class="col"><div class="label">NOW</div><div class="big">${n.temp_c??'—'}°C</div><div class="small">Rain ${n.precip_mm??'—'} mm · RH ${n.humidity_pct??'—'}%</div></div><div class="col"><div class="label">HARVEST TODAY</div><div class="big">${f.today?.high_c??'—'}°</div><div class="small">Low ${f.today?.low_c??'—'}° · hot35 ${m.h35}d</div></div><div class="col"><div class="label">FUTURE</div><div class="big">${f.tomorrow?.high_c??'—'}°</div><div class="small">Dry months ${m.u50} · streak ${m.streak}</div></div></div><div class="chartTitle"><b>Monthly rainfall</b><span>&lt;50 red · 50–130 yellow · &gt;130 green</span></div>${rainfallSvg(loc)}<div class="chartTitle"><b>Timeline</b><span>dry blocks · heat markers</span></div>${timelineSvg(loc)}<div class="legend"><span><i class="sw" style="background:${C.red}"></i>&lt;50mm month</span><span><i class="sw" style="background:${C.yellow}"></i>50–130mm</span><span><i class="sw" style="background:${C.hot}"></i>&gt;33°C</span><span><i class="sw" style="background:${C.hot2}"></i>&gt;35°C</span></div><div class="foot">12-month counts: under130=${m.u130}, under50=${m.u50}, hot33=${m.h33}, hot38=${m.h38}</div></section>`;
+}
+document.getElementById('app').innerHTML=DATA.locations.map(card).join('');
+</script>
 </body>
 </html>
