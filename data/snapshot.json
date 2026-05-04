@@ -1,7 +1,61 @@
 {
-  "generated_at": "2026-05-03T23:30:36.829794Z",
+  "generated_at": "2026-05-04T13:42:28.123883Z",
   "source": "open-meteo",
   "locations": [
+    {
+      "id": "ph_davao",
+      "country": "Philippines",
+      "region": "Davao",
+      "coordinates": {
+        "lat": 7.07,
+        "lon": 125.6
+      },
+      "current": {
+        "temp_c": 24,
+        "humidity_pct": 94,
+        "wind_kmh": 3.9,
+        "wind_dir": 338,
+        "precip_mm": 5.6
+      },
+      "forecast": {
+        "today": {
+          "high_c": 31,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 33,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-05-04T13:42:16.847424Z"
+    },
+    {
+      "id": "ph_cagayan",
+      "country": "Philippines",
+      "region": "Cagayan de Oro",
+      "coordinates": {
+        "lat": 8.48,
+        "lon": 124.64
+      },
+      "current": {
+        "temp_c": 25,
+        "humidity_pct": 95,
+        "wind_kmh": 6.6,
+        "wind_dir": 167,
+        "precip_mm": 0.1
+      },
+      "forecast": {
+        "today": {
+          "high_c": 32,
+          "low_c": 24
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-05-04T13:42:18.289305Z"
+    },
     {
       "id": "ph_palawan",
       "country": "Philippines",
@@ -11,23 +65,23 @@
         "lon": 118.77
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 98,
-        "wind_kmh": 4.5,
-        "wind_dir": 304,
-        "precip_mm": 9.9
+        "temp_c": 27,
+        "humidity_pct": 89,
+        "wind_kmh": 0.9,
+        "wind_dir": 270,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
           "high_c": 28,
-          "low_c": 24
+          "low_c": 25
         },
         "tomorrow": {
           "high_c": 29,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-03T23:30:23.003532Z"
+      "last_updated": "2026-05-04T13:42:19.693352Z"
     },
     {
       "id": "ph_batangas",
@@ -38,10 +92,10 @@
         "lon": 121.05
       },
       "current": {
-        "temp_c": 30,
-        "humidity_pct": 85,
-        "wind_kmh": 5.9,
-        "wind_dir": 92,
+        "temp_c": 28,
+        "humidity_pct": 57,
+        "wind_kmh": 13.5,
+        "wind_dir": 85,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -50,11 +104,11 @@
           "low_c": 25
         },
         "tomorrow": {
-          "high_c": 36,
-          "low_c": 26
+          "high_c": 35,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-03T23:30:26.384898Z"
+      "last_updated": "2026-05-04T13:42:21.092710Z"
     },
     {
       "id": "ph_generalsantos",
@@ -65,10 +119,10 @@
         "lon": 125.17
       },
       "current": {
-        "temp_c": 28,
-        "humidity_pct": 88,
-        "wind_kmh": 4.7,
-        "wind_dir": 40,
+        "temp_c": 26,
+        "humidity_pct": 87,
+        "wind_kmh": 9.7,
+        "wind_dir": 341,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -77,11 +131,11 @@
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 33,
+          "high_c": 34,
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-03T23:30:29.065058Z"
+      "last_updated": "2026-05-04T13:42:22.539289Z"
     },
     {
       "id": "lk_colombo",
@@ -92,50 +146,50 @@
         "lon": 79.85
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 90,
-        "wind_kmh": 5.7,
-        "wind_dir": 212,
-        "precip_mm": 0.2
+        "temp_c": 27,
+        "humidity_pct": 93,
+        "wind_kmh": 4.1,
+        "wind_dir": 209,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
-          "high_c": 30,
-          "low_c": 26
+          "high_c": 31,
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 31,
-          "low_c": 26
+          "high_c": 30,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-03T23:30:31.404602Z"
+      "last_updated": "2026-05-04T13:42:23.962333Z"
     },
     {
-      "id": "th_bangkok",
+      "id": "th_ratchaburi",
       "country": "Thailand",
-      "region": "Bangkok",
+      "region": "Ratchaburi",
       "coordinates": {
-        "lat": 13.76,
-        "lon": 100.5
+        "lat": 13.5283,
+        "lon": 99.8134
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 89,
-        "wind_kmh": 4.5,
-        "wind_dir": 104,
+        "temp_c": 30,
+        "humidity_pct": 75,
+        "wind_kmh": 9.5,
+        "wind_dir": 141,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 36,
-          "low_c": 27
+          "high_c": 38,
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 31,
+          "high_c": 32,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-03T23:30:33.347477Z"
+      "last_updated": "2026-05-04T13:42:25.288606Z"
     },
     {
       "id": "vn_vinhlong",
@@ -146,23 +200,23 @@
         "lon": 105.98
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 95,
-        "wind_kmh": 6.7,
-        "wind_dir": 46,
+        "temp_c": 28,
+        "humidity_pct": 75,
+        "wind_kmh": 10.4,
+        "wind_dir": 113,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 33,
-          "low_c": 25
+          "high_c": 34,
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 31,
+          "high_c": 33,
           "low_c": 26
         }
       },
-      "last_updated": "2026-05-03T23:30:35.191937Z"
+      "last_updated": "2026-05-04T13:42:26.730702Z"
     },
     {
       "id": "id_riau",
@@ -173,11 +227,11 @@
         "lon": 103.2
       },
       "current": {
-        "temp_c": 24,
-        "humidity_pct": 97,
-        "wind_kmh": 3.1,
-        "wind_dir": 291,
-        "precip_mm": 0.0
+        "temp_c": 25,
+        "humidity_pct": 95,
+        "wind_kmh": 4.5,
+        "wind_dir": 230,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
@@ -185,11 +239,11 @@
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 31,
+          "high_c": 32,
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-03T23:30:36.829083Z"
+      "last_updated": "2026-05-04T13:42:28.123145Z"
     }
   ]
 }
