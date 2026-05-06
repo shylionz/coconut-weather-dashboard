@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-06T05:33:22.985407Z",
+  "generated_at": "2026-05-06T23:00:37.705495Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -200,23 +200,23 @@
         "lon": 105.98
       },
       "current": {
-        "temp_c": 31,
-        "humidity_pct": 67,
-        "wind_kmh": 14.8,
-        "wind_dir": 111,
-        "precip_mm": 0.1
+        "temp_c": 26,
+        "humidity_pct": 93,
+        "wind_kmh": 8.3,
+        "wind_dir": 106,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
+          "high_c": 33,
           "low_c": 26
         },
         "tomorrow": {
           "high_c": 32,
-          "low_c": 26
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-06T05:33:21.514338Z"
+      "last_updated": "2026-05-06T23:00:33.523688Z"
     },
     {
       "id": "id_riau",
@@ -227,23 +227,23 @@
         "lon": 103.2
       },
       "current": {
-        "temp_c": 29,
-        "humidity_pct": 85,
-        "wind_kmh": 6.8,
-        "wind_dir": 169,
-        "precip_mm": 5.0
+        "temp_c": 24,
+        "humidity_pct": 99,
+        "wind_kmh": 8.9,
+        "wind_dir": 193,
+        "precip_mm": 0.2
       },
       "forecast": {
         "today": {
-          "high_c": 29,
+          "high_c": 32,
           "low_c": 24
         },
         "tomorrow": {
           "high_c": 30,
-          "low_c": 24
+          "low_c": 23
         }
       },
-      "last_updated": "2026-05-06T05:33:22.984912Z"
+      "last_updated": "2026-05-06T23:00:37.704807Z"
     }
   ]
 }
