@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-06T23:00:37.705495Z",
+  "generated_at": "2026-05-07T23:00:36.735927Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -146,23 +146,23 @@
         "lon": 79.85
       },
       "current": {
-        "temp_c": 32,
-        "humidity_pct": 62,
-        "wind_kmh": 8.2,
-        "wind_dir": 229,
-        "precip_mm": 0.2
+        "temp_c": 25,
+        "humidity_pct": 92,
+        "wind_kmh": 5.9,
+        "wind_dir": 101,
+        "precip_mm": 8.6
       },
       "forecast": {
         "today": {
-          "high_c": 32,
+          "high_c": 30,
           "low_c": 25
         },
         "tomorrow": {
           "high_c": 30,
-          "low_c": 24
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-06T05:33:18.771728Z"
+      "last_updated": "2026-05-07T23:00:27.667816Z"
     },
     {
       "id": "th_ratchaburi",
@@ -173,23 +173,23 @@
         "lon": 99.8134
       },
       "current": {
-        "temp_c": 36,
-        "humidity_pct": 46,
-        "wind_kmh": 4.4,
-        "wind_dir": 120,
+        "temp_c": 26,
+        "humidity_pct": 85,
+        "wind_kmh": 5.1,
+        "wind_dir": 306,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
           "high_c": 36,
-          "low_c": 27
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 36,
+          "high_c": 32,
           "low_c": 26
         }
       },
-      "last_updated": "2026-05-06T05:33:20.138185Z"
+      "last_updated": "2026-05-07T23:00:30.905024Z"
     },
     {
       "id": "vn_vinhlong",
@@ -201,9 +201,9 @@
       },
       "current": {
         "temp_c": 26,
-        "humidity_pct": 93,
-        "wind_kmh": 8.3,
-        "wind_dir": 106,
+        "humidity_pct": 92,
+        "wind_kmh": 4.1,
+        "wind_dir": 88,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -212,11 +212,11 @@
           "low_c": 26
         },
         "tomorrow": {
-          "high_c": 32,
+          "high_c": 33,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-06T23:00:33.523688Z"
+      "last_updated": "2026-05-07T23:00:33.872121Z"
     },
     {
       "id": "id_riau",
@@ -229,21 +229,21 @@
       "current": {
         "temp_c": 24,
         "humidity_pct": 99,
-        "wind_kmh": 8.9,
-        "wind_dir": 193,
-        "precip_mm": 0.2
+        "wind_kmh": 5.6,
+        "wind_dir": 268,
+        "precip_mm": 1.2
       },
       "forecast": {
         "today": {
-          "high_c": 32,
+          "high_c": 30,
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 30,
-          "low_c": 23
+          "high_c": 29,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-05-06T23:00:37.704807Z"
+      "last_updated": "2026-05-07T23:00:36.735226Z"
     }
   ]
 }
