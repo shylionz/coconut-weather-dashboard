@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T23:00:37.318438Z",
+  "generated_at": "2026-05-11T23:00:42.095733Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -119,23 +119,23 @@
         "lon": 125.17
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 95,
-        "wind_kmh": 1.9,
-        "wind_dir": 61,
+        "temp_c": 28,
+        "humidity_pct": 93,
+        "wind_kmh": 1.6,
+        "wind_dir": 360,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 33,
-          "low_c": 24
+          "high_c": 34,
+          "low_c": 25
         },
         "tomorrow": {
           "high_c": 34,
-          "low_c": 24
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-10T23:00:26.222840Z"
+      "last_updated": "2026-05-11T23:00:29.442928Z"
     },
     {
       "id": "lk_colombo",
@@ -147,22 +147,22 @@
       },
       "current": {
         "temp_c": 25,
-        "humidity_pct": 97,
-        "wind_kmh": 5.1,
-        "wind_dir": 84,
-        "precip_mm": 0.1
+        "humidity_pct": 95,
+        "wind_kmh": 7.8,
+        "wind_dir": 132,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
+          "high_c": 30,
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 30,
-          "low_c": 25
+          "high_c": 29,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-05-10T23:00:29.637435Z"
+      "last_updated": "2026-05-11T23:00:33.156829Z"
     },
     {
       "id": "th_ratchaburi",
@@ -174,14 +174,14 @@
       },
       "current": {
         "temp_c": 26,
-        "humidity_pct": 92,
-        "wind_kmh": 0.2,
-        "wind_dir": 180,
+        "humidity_pct": 89,
+        "wind_kmh": 1.2,
+        "wind_dir": 129,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 34,
+          "high_c": 35,
           "low_c": 26
         },
         "tomorrow": {
@@ -189,7 +189,7 @@
           "low_c": 26
         }
       },
-      "last_updated": "2026-05-10T23:00:32.632541Z"
+      "last_updated": "2026-05-11T23:00:36.535337Z"
     },
     {
       "id": "vn_vinhlong",
@@ -201,22 +201,22 @@
       },
       "current": {
         "temp_c": 27,
-        "humidity_pct": 86,
-        "wind_kmh": 7.7,
-        "wind_dir": 127,
+        "humidity_pct": 88,
+        "wind_kmh": 8.7,
+        "wind_dir": 104,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 33,
+          "high_c": 34,
           "low_c": 26
         },
         "tomorrow": {
           "high_c": 34,
-          "low_c": 26
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-10T23:00:35.166693Z"
+      "last_updated": "2026-05-11T23:00:39.504409Z"
     },
     {
       "id": "id_riau",
@@ -229,13 +229,13 @@
       "current": {
         "temp_c": 24,
         "humidity_pct": 99,
-        "wind_kmh": 6.6,
-        "wind_dir": 213,
+        "wind_kmh": 7.6,
+        "wind_dir": 180,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 30,
+          "high_c": 32,
           "low_c": 24
         },
         "tomorrow": {
@@ -243,7 +243,7 @@
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-10T23:00:37.317694Z"
+      "last_updated": "2026-05-11T23:00:42.094990Z"
     }
   ]
 }
