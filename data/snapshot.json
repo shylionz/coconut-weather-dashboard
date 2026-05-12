@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T23:00:42.095733Z",
+  "generated_at": "2026-05-12T12:00:27.003113Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -27,7 +27,10 @@
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-06T05:33:11.891807Z"
+      "last_updated": "2026-05-06T05:33:11.891807Z",
+      "stale": true,
+      "stale_reason": "weather fetch failed; using cached data",
+      "stale_checked_at": "2026-05-12T12:00:27.003113Z"
     },
     {
       "id": "ph_cagayan",
@@ -38,23 +41,24 @@
         "lon": 124.64
       },
       "current": {
-        "temp_c": 32,
-        "humidity_pct": 65,
-        "wind_kmh": 15.9,
-        "wind_dir": 344,
-        "precip_mm": 0.1
+        "temp_c": 28,
+        "humidity_pct": 78,
+        "wind_kmh": 7.3,
+        "wind_dir": 173,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
-          "low_c": 25
+          "high_c": 33,
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 31,
-          "low_c": 25
+          "high_c": 32,
+          "low_c": 26
         }
       },
-      "last_updated": "2026-05-06T05:33:13.308244Z"
+      "last_updated": "2026-05-12T12:00:38.369858Z",
+      "stale": false
     },
     {
       "id": "ph_palawan",
@@ -65,23 +69,24 @@
         "lon": 118.77
       },
       "current": {
-        "temp_c": 30,
-        "humidity_pct": 65,
-        "wind_kmh": 9.1,
-        "wind_dir": 56,
+        "temp_c": 28,
+        "humidity_pct": 87,
+        "wind_kmh": 1.6,
+        "wind_dir": 333,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 30,
+          "high_c": 31,
           "low_c": 26
         },
         "tomorrow": {
-          "high_c": 30,
+          "high_c": 31,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-06T05:33:14.706982Z"
+      "last_updated": "2026-05-12T12:00:43.226109Z",
+      "stale": false
     },
     {
       "id": "ph_batangas",
@@ -92,23 +97,24 @@
         "lon": 121.05
       },
       "current": {
-        "temp_c": 35,
-        "humidity_pct": 48,
-        "wind_kmh": 18.2,
-        "wind_dir": 129,
+        "temp_c": 29,
+        "humidity_pct": 80,
+        "wind_kmh": 5.8,
+        "wind_dir": 263,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
           "high_c": 35,
-          "low_c": 26
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 36,
-          "low_c": 25
+          "high_c": 35,
+          "low_c": 26
         }
       },
-      "last_updated": "2026-05-06T05:33:16.184898Z"
+      "last_updated": "2026-05-12T12:00:47.418083Z",
+      "stale": false
     },
     {
       "id": "ph_generalsantos",
@@ -120,9 +126,9 @@
       },
       "current": {
         "temp_c": 28,
-        "humidity_pct": 93,
-        "wind_kmh": 1.6,
-        "wind_dir": 360,
+        "humidity_pct": 85,
+        "wind_kmh": 2.6,
+        "wind_dir": 155,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -131,11 +137,12 @@
           "low_c": 25
         },
         "tomorrow": {
-          "high_c": 34,
+          "high_c": 33,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-11T23:00:29.442928Z"
+      "last_updated": "2026-05-12T12:00:51.099058Z",
+      "stale": false
     },
     {
       "id": "lk_colombo",
@@ -146,23 +153,24 @@
         "lon": 79.85
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 95,
-        "wind_kmh": 7.8,
-        "wind_dir": 132,
+        "temp_c": 27,
+        "humidity_pct": 96,
+        "wind_kmh": 3.4,
+        "wind_dir": 137,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
           "high_c": 30,
-          "low_c": 24
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 29,
-          "low_c": 24
+          "high_c": 28,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-05-11T23:00:33.156829Z"
+      "last_updated": "2026-05-12T12:00:54.394852Z",
+      "stale": false
     },
     {
       "id": "th_ratchaburi",
@@ -173,23 +181,24 @@
         "lon": 99.8134
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 89,
-        "wind_kmh": 1.2,
-        "wind_dir": 129,
+        "temp_c": 30,
+        "humidity_pct": 67,
+        "wind_kmh": 10.5,
+        "wind_dir": 145,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
           "high_c": 35,
-          "low_c": 26
+          "low_c": 27
         },
         "tomorrow": {
           "high_c": 34,
           "low_c": 26
         }
       },
-      "last_updated": "2026-05-11T23:00:36.535337Z"
+      "last_updated": "2026-05-12T12:00:57.498997Z",
+      "stale": false
     },
     {
       "id": "vn_vinhlong",
@@ -200,23 +209,24 @@
         "lon": 105.98
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 88,
-        "wind_kmh": 8.7,
-        "wind_dir": 104,
+        "temp_c": 29,
+        "humidity_pct": 73,
+        "wind_kmh": 7.3,
+        "wind_dir": 237,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 34,
-          "low_c": 26
+          "high_c": 35,
+          "low_c": 27
         },
         "tomorrow": {
-          "high_c": 34,
+          "high_c": 35,
           "low_c": 25
         }
       },
-      "last_updated": "2026-05-11T23:00:39.504409Z"
+      "last_updated": "2026-05-12T12:01:00.514425Z",
+      "stale": false
     },
     {
       "id": "id_riau",
@@ -227,11 +237,11 @@
         "lon": 103.2
       },
       "current": {
-        "temp_c": 24,
+        "temp_c": 25,
         "humidity_pct": 99,
-        "wind_kmh": 7.6,
-        "wind_dir": 180,
-        "precip_mm": 0.0
+        "wind_kmh": 10.1,
+        "wind_dir": 245,
+        "precip_mm": 3.1
       },
       "forecast": {
         "today": {
@@ -243,7 +253,8 @@
           "low_c": 24
         }
       },
-      "last_updated": "2026-05-11T23:00:42.094990Z"
+      "last_updated": "2026-05-12T12:01:03.672140Z",
+      "stale": false
     }
   ]
 }
