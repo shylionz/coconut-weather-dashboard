@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T23:00:04.706510Z",
+  "generated_at": "2026-07-08T23:00:05.806213Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -11,23 +11,23 @@
         "lon": 125.6
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 78,
-        "wind_kmh": 3.6,
-        "wind_dir": 303,
+        "temp_c": 24,
+        "humidity_pct": 94,
+        "wind_kmh": 5.4,
+        "wind_dir": 334,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
-          "low_c": 25
+          "high_c": 30,
+          "low_c": 23
         },
         "tomorrow": {
           "high_c": 29,
           "low_c": 25
         }
       },
-      "last_updated": "2026-07-07T23:00:05.893847Z",
+      "last_updated": "2026-07-08T23:00:06.975283Z",
       "stale": false
     },
     {
@@ -39,11 +39,11 @@
         "lon": 124.64
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 94,
-        "wind_kmh": 7.0,
-        "wind_dir": 111,
-        "precip_mm": 1.9
+        "temp_c": 26,
+        "humidity_pct": 88,
+        "wind_kmh": 8.1,
+        "wind_dir": 168,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
@@ -55,7 +55,7 @@
           "low_c": 25
         }
       },
-      "last_updated": "2026-07-07T23:00:06.959561Z",
+      "last_updated": "2026-07-08T23:00:08.024550Z",
       "stale": false
     },
     {
@@ -67,23 +67,23 @@
         "lon": 118.77
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 94,
-        "wind_kmh": 4.6,
-        "wind_dir": 301,
+        "temp_c": 28,
+        "humidity_pct": 89,
+        "wind_kmh": 6.8,
+        "wind_dir": 281,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
-          "low_c": 25
+          "high_c": 31,
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 32,
-          "low_c": 24
+          "high_c": 30,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-07-07T23:00:07.960358Z",
+      "last_updated": "2026-07-08T23:00:09.110836Z",
       "stale": false
     },
     {
@@ -95,23 +95,23 @@
         "lon": 121.05
       },
       "current": {
-        "temp_c": 28,
-        "humidity_pct": 88,
-        "wind_kmh": 12.2,
-        "wind_dir": 279,
-        "precip_mm": 0.0
+        "temp_c": 27,
+        "humidity_pct": 85,
+        "wind_kmh": 23.9,
+        "wind_dir": 270,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
-          "high_c": 31,
-          "low_c": 27
+          "high_c": 29,
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 29,
+          "high_c": 28,
           "low_c": 26
         }
       },
-      "last_updated": "2026-07-07T23:00:08.931166Z",
+      "last_updated": "2026-07-08T23:00:10.086689Z",
       "stale": false
     },
     {
@@ -125,9 +125,9 @@
       "current": {
         "temp_c": 26,
         "humidity_pct": 95,
-        "wind_kmh": 1.4,
-        "wind_dir": 293,
-        "precip_mm": 0.0
+        "wind_kmh": 2.7,
+        "wind_dir": 152,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
@@ -135,11 +135,11 @@
           "low_c": 25
         },
         "tomorrow": {
-          "high_c": 30,
+          "high_c": 29,
           "low_c": 24
         }
       },
-      "last_updated": "2026-07-07T23:00:09.904789Z",
+      "last_updated": "2026-07-08T23:00:11.159264Z",
       "stale": false
     },
     {
@@ -152,22 +152,22 @@
       },
       "current": {
         "temp_c": 27,
-        "humidity_pct": 93,
-        "wind_kmh": 6.1,
-        "wind_dir": 236,
+        "humidity_pct": 85,
+        "wind_kmh": 9.2,
+        "wind_dir": 263,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
-          "low_c": 26
+          "high_c": 30,
+          "low_c": 25
         },
         "tomorrow": {
           "high_c": 29,
           "low_c": 25
         }
       },
-      "last_updated": "2026-07-07T23:00:10.877217Z",
+      "last_updated": "2026-07-08T23:00:12.132887Z",
       "stale": false
     },
     {
@@ -179,23 +179,23 @@
         "lon": 99.8134
       },
       "current": {
-        "temp_c": 27,
+        "temp_c": 26,
         "humidity_pct": 81,
-        "wind_kmh": 5.6,
-        "wind_dir": 197,
+        "wind_kmh": 5.2,
+        "wind_dir": 214,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 34,
-          "low_c": 27
+          "high_c": 35,
+          "low_c": 26
         },
         "tomorrow": {
           "high_c": 35,
-          "low_c": 26
+          "low_c": 27
         }
       },
-      "last_updated": "2026-07-07T23:00:11.846926Z",
+      "last_updated": "2026-07-08T23:00:13.098210Z",
       "stale": false
     },
     {
@@ -208,9 +208,9 @@
       },
       "current": {
         "temp_c": 26,
-        "humidity_pct": 96,
-        "wind_kmh": 7.0,
-        "wind_dir": 201,
+        "humidity_pct": 95,
+        "wind_kmh": 10.0,
+        "wind_dir": 210,
         "precip_mm": 0.0
       },
       "forecast": {
@@ -220,10 +220,10 @@
         },
         "tomorrow": {
           "high_c": 31,
-          "low_c": 25
+          "low_c": 26
         }
       },
-      "last_updated": "2026-07-07T23:00:12.822354Z",
+      "last_updated": "2026-07-08T23:00:14.069726Z",
       "stale": false
     },
     {
@@ -236,22 +236,22 @@
       },
       "current": {
         "temp_c": 24,
-        "humidity_pct": 98,
-        "wind_kmh": 5.2,
-        "wind_dir": 176,
+        "humidity_pct": 99,
+        "wind_kmh": 5.0,
+        "wind_dir": 182,
         "precip_mm": 0.4
       },
       "forecast": {
         "today": {
-          "high_c": 30,
+          "high_c": 29,
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 30,
-          "low_c": 23
+          "high_c": 31,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-07-07T23:00:13.804151Z",
+      "last_updated": "2026-07-08T23:00:15.053085Z",
       "stale": false
     }
   ]
