@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T23:00:02.264735Z",
+  "generated_at": "2026-09-17T23:00:02.166276Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -11,23 +11,23 @@
         "lon": 125.6
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 96,
-        "wind_kmh": 8.8,
-        "wind_dir": 356,
-        "precip_mm": 1.8
+        "temp_c": 26,
+        "humidity_pct": 83,
+        "wind_kmh": 3.2,
+        "wind_dir": 341,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
-          "low_c": 24
+          "high_c": 30,
+          "low_c": 25
         },
         "tomorrow": {
           "high_c": 30,
-          "low_c": 24
+          "low_c": 25
         }
       },
-      "last_updated": "2026-09-16T23:00:03.828529Z",
+      "last_updated": "2026-09-17T23:00:03.645388Z",
       "stale": false
     },
     {
@@ -39,23 +39,23 @@
         "lon": 124.64
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 95,
-        "wind_kmh": 9.6,
-        "wind_dir": 159,
-        "precip_mm": 2.1
+        "temp_c": 26,
+        "humidity_pct": 92,
+        "wind_kmh": 6.8,
+        "wind_dir": 140,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 30,
-          "low_c": 24
+          "high_c": 31,
+          "low_c": 26
         },
         "tomorrow": {
-          "high_c": 30,
-          "low_c": 25
+          "high_c": 31,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-09-16T23:00:05.052320Z",
+      "last_updated": "2026-09-17T23:00:04.863852Z",
       "stale": false
     },
     {
@@ -67,23 +67,23 @@
         "lon": 118.77
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 97,
-        "wind_kmh": 4.6,
-        "wind_dir": 231,
+        "temp_c": 25,
+        "humidity_pct": 96,
+        "wind_kmh": 8.9,
+        "wind_dir": 230,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
-          "low_c": 25
+          "high_c": 28,
+          "low_c": 24
         },
         "tomorrow": {
-          "high_c": 30,
+          "high_c": 29,
           "low_c": 24
         }
       },
-      "last_updated": "2026-09-16T23:00:06.199794Z",
+      "last_updated": "2026-09-17T23:00:05.964540Z",
       "stale": false
     },
     {
@@ -95,23 +95,23 @@
         "lon": 121.05
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 99,
-        "wind_kmh": 3.1,
-        "wind_dir": 118,
+        "temp_c": 26,
+        "humidity_pct": 98,
+        "wind_kmh": 8.6,
+        "wind_dir": 92,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 29,
-          "low_c": 24
+          "high_c": 30,
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 29,
-          "low_c": 24
+          "high_c": 30,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-09-16T23:00:07.498376Z",
+      "last_updated": "2026-09-17T23:00:07.033928Z",
       "stale": false
     },
     {
@@ -123,23 +123,23 @@
         "lon": 125.17
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 79,
-        "wind_kmh": 6.0,
-        "wind_dir": 353,
+        "temp_c": 28,
+        "humidity_pct": 82,
+        "wind_kmh": 2.1,
+        "wind_dir": 301,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
+          "high_c": 33,
           "low_c": 26
         },
         "tomorrow": {
-          "high_c": 32,
+          "high_c": 33,
           "low_c": 25
         }
       },
-      "last_updated": "2026-09-16T23:00:08.593162Z",
+      "last_updated": "2026-09-17T23:00:07.987938Z",
       "stale": false
     },
     {
@@ -151,23 +151,23 @@
         "lon": 79.85
       },
       "current": {
-        "temp_c": 25,
-        "humidity_pct": 94,
-        "wind_kmh": 9.7,
-        "wind_dir": 180,
-        "precip_mm": 0.1
+        "temp_c": 26,
+        "humidity_pct": 90,
+        "wind_kmh": 9.8,
+        "wind_dir": 204,
+        "precip_mm": 0.2
       },
       "forecast": {
         "today": {
           "high_c": 28,
-          "low_c": 24
+          "low_c": 26
         },
         "tomorrow": {
           "high_c": 28,
           "low_c": 25
         }
       },
-      "last_updated": "2026-09-16T23:00:09.697075Z",
+      "last_updated": "2026-09-17T23:00:08.983433Z",
       "stale": false
     },
     {
@@ -179,23 +179,23 @@
         "lon": 99.8134
       },
       "current": {
-        "temp_c": 25,
+        "temp_c": 24,
         "humidity_pct": 98,
-        "wind_kmh": 4.8,
-        "wind_dir": 153,
-        "precip_mm": 3.0
+        "wind_kmh": 2.3,
+        "wind_dir": 209,
+        "precip_mm": 0.0
       },
       "forecast": {
         "today": {
           "high_c": 31,
-          "low_c": 25
+          "low_c": 24
         },
         "tomorrow": {
-          "high_c": 31,
-          "low_c": 25
+          "high_c": 30,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-09-16T23:00:10.816058Z",
+      "last_updated": "2026-09-17T23:00:09.875133Z",
       "stale": false
     },
     {
@@ -207,23 +207,23 @@
         "lon": 105.98
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 94,
-        "wind_kmh": 2.9,
-        "wind_dir": 353,
+        "temp_c": 25,
+        "humidity_pct": 96,
+        "wind_kmh": 5.2,
+        "wind_dir": 264,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
-          "low_c": 26
+          "high_c": 31,
+          "low_c": 25
         },
         "tomorrow": {
           "high_c": 31,
           "low_c": 25
         }
       },
-      "last_updated": "2026-09-16T23:00:11.761432Z",
+      "last_updated": "2026-09-17T23:00:10.770160Z",
       "stale": false
     },
     {
@@ -236,22 +236,22 @@
       },
       "current": {
         "temp_c": 25,
-        "humidity_pct": 90,
-        "wind_kmh": 7.2,
-        "wind_dir": 127,
+        "humidity_pct": 88,
+        "wind_kmh": 1.4,
+        "wind_dir": 293,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 33,
+          "high_c": 32,
           "low_c": 25
         },
         "tomorrow": {
-          "high_c": 32,
-          "low_c": 25
+          "high_c": 31,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-09-16T23:00:12.973494Z",
+      "last_updated": "2026-09-17T23:00:11.653907Z",
       "stale": false
     }
   ]
