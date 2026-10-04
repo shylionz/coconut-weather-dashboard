@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T23:00:05.253150Z",
+  "generated_at": "2026-10-04T23:00:05.555685Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -30,7 +30,7 @@
       "last_updated": "2026-10-02T23:00:05.982088Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "ph_cagayan",
@@ -60,7 +60,7 @@
       "last_updated": "2026-10-02T23:00:07.638924Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "ph_palawan",
@@ -90,7 +90,7 @@
       "last_updated": "2026-10-02T23:00:09.155871Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "ph_batangas",
@@ -120,7 +120,7 @@
       "last_updated": "2026-10-02T23:00:10.705474Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "ph_generalsantos",
@@ -150,7 +150,7 @@
       "last_updated": "2026-10-02T23:00:12.227936Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "lk_colombo",
@@ -180,7 +180,7 @@
       "last_updated": "2026-10-02T23:00:13.938924Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "th_ratchaburi",
@@ -210,7 +210,7 @@
       "last_updated": "2026-10-02T23:00:15.195995Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "vn_vinhlong",
@@ -240,7 +240,7 @@
       "last_updated": "2026-10-02T23:00:16.369965Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     },
     {
       "id": "id_riau",
@@ -270,7 +270,7 @@
       "last_updated": "2026-10-02T23:00:17.646647Z",
       "stale": true,
       "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-03T23:00:05.253150Z"
+      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
     }
   ]
 }
