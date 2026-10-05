@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T23:00:05.555685Z",
+  "generated_at": "2026-10-05T23:05:45.658076Z",
   "source": "open-meteo",
   "locations": [
     {
@@ -11,26 +11,24 @@
         "lon": 125.6
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 76,
-        "wind_kmh": 3.0,
-        "wind_dir": 284,
-        "precip_mm": 0.0
+        "temp_c": 26,
+        "humidity_pct": 84,
+        "wind_kmh": 3.2,
+        "wind_dir": 243,
+        "precip_mm": 0.1
       },
       "forecast": {
         "today": {
-          "high_c": 33,
-          "low_c": 26
+          "high_c": 31,
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 32,
+          "high_c": 31,
           "low_c": 25
         }
       },
-      "last_updated": "2026-10-02T23:00:05.982088Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:46.954091Z",
+      "stale": false
     },
     {
       "id": "ph_cagayan",
@@ -41,26 +39,24 @@
         "lon": 124.64
       },
       "current": {
-        "temp_c": 27,
-        "humidity_pct": 87,
-        "wind_kmh": 7.3,
-        "wind_dir": 164,
+        "temp_c": 26,
+        "humidity_pct": 97,
+        "wind_kmh": 6.0,
+        "wind_dir": 187,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 32,
-          "low_c": 24
+          "high_c": 30,
+          "low_c": 25
         },
         "tomorrow": {
-          "high_c": 31,
-          "low_c": 25
+          "high_c": 30,
+          "low_c": 24
         }
       },
-      "last_updated": "2026-10-02T23:00:07.638924Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:47.831746Z",
+      "stale": false
     },
     {
       "id": "ph_palawan",
@@ -72,25 +68,23 @@
       },
       "current": {
         "temp_c": 26,
-        "humidity_pct": 91,
-        "wind_kmh": 4.2,
-        "wind_dir": 263,
+        "humidity_pct": 93,
+        "wind_kmh": 3.9,
+        "wind_dir": 28,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 31,
+          "high_c": 29,
           "low_c": 25
         },
         "tomorrow": {
           "high_c": 30,
-          "low_c": 25
+          "low_c": 24
         }
       },
-      "last_updated": "2026-10-02T23:00:09.155871Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:48.704577Z",
+      "stale": false
     },
     {
       "id": "ph_batangas",
@@ -102,25 +96,23 @@
       },
       "current": {
         "temp_c": 27,
-        "humidity_pct": 93,
-        "wind_kmh": 2.4,
-        "wind_dir": 77,
+        "humidity_pct": 96,
+        "wind_kmh": 5.1,
+        "wind_dir": 162,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 31,
-          "low_c": 25
+          "high_c": 32,
+          "low_c": 24
         },
         "tomorrow": {
           "high_c": 31,
-          "low_c": 24
+          "low_c": 23
         }
       },
-      "last_updated": "2026-10-02T23:00:10.705474Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:49.585077Z",
+      "stale": false
     },
     {
       "id": "ph_generalsantos",
@@ -131,26 +123,24 @@
         "lon": 125.17
       },
       "current": {
-        "temp_c": 28,
-        "humidity_pct": 82,
-        "wind_kmh": 3.9,
-        "wind_dir": 298,
+        "temp_c": 27,
+        "humidity_pct": 93,
+        "wind_kmh": 2.7,
+        "wind_dir": 238,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 33,
+          "high_c": 32,
           "low_c": 25
         },
         "tomorrow": {
-          "high_c": 33,
-          "low_c": 24
+          "high_c": 32,
+          "low_c": 25
         }
       },
-      "last_updated": "2026-10-02T23:00:12.227936Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:50.471946Z",
+      "stale": false
     },
     {
       "id": "lk_colombo",
@@ -161,26 +151,24 @@
         "lon": 79.85
       },
       "current": {
-        "temp_c": 24,
-        "humidity_pct": 97,
+        "temp_c": 25,
+        "humidity_pct": 93,
         "wind_kmh": 4.8,
-        "wind_dir": 103,
+        "wind_dir": 53,
         "precip_mm": 0.0
       },
       "forecast": {
         "today": {
-          "high_c": 30,
+          "high_c": 31,
           "low_c": 24
         },
         "tomorrow": {
-          "high_c": 29,
+          "high_c": 31,
           "low_c": 24
         }
       },
-      "last_updated": "2026-10-02T23:00:13.938924Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:51.353990Z",
+      "stale": false
     },
     {
       "id": "th_ratchaburi",
@@ -191,71 +179,11 @@
         "lon": 99.8134
       },
       "current": {
-        "temp_c": 26,
-        "humidity_pct": 92,
-        "wind_kmh": 0.6,
-        "wind_dir": 124,
-        "precip_mm": 0.0
-      },
-      "forecast": {
-        "today": {
-          "high_c": 33,
-          "low_c": 26
-        },
-        "tomorrow": {
-          "high_c": 32,
-          "low_c": 25
-        }
-      },
-      "last_updated": "2026-10-02T23:00:15.195995Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
-    },
-    {
-      "id": "vn_vinhlong",
-      "country": "Vietnam",
-      "region": "Vinh Long",
-      "coordinates": {
-        "lat": 10.25,
-        "lon": 105.98
-      },
-      "current": {
-        "temp_c": 26,
-        "humidity_pct": 99,
-        "wind_kmh": 0.6,
-        "wind_dir": 124,
-        "precip_mm": 0.0
-      },
-      "forecast": {
-        "today": {
-          "high_c": 32,
-          "low_c": 26
-        },
-        "tomorrow": {
-          "high_c": 32,
-          "low_c": 25
-        }
-      },
-      "last_updated": "2026-10-02T23:00:16.369965Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
-    },
-    {
-      "id": "id_riau",
-      "country": "Indonesia",
-      "region": "Indragiri Hilir (Kateman)",
-      "coordinates": {
-        "lat": -0.35,
-        "lon": 103.2
-      },
-      "current": {
         "temp_c": 24,
-        "humidity_pct": 99,
-        "wind_kmh": 6.1,
-        "wind_dir": 210,
-        "precip_mm": 0.3
+        "humidity_pct": 97,
+        "wind_kmh": 3.6,
+        "wind_dir": 342,
+        "precip_mm": 2.7
       },
       "forecast": {
         "today": {
@@ -267,10 +195,64 @@
           "low_c": 23
         }
       },
-      "last_updated": "2026-10-02T23:00:17.646647Z",
-      "stale": true,
-      "stale_reason": "weather fetch failed; using cached data",
-      "stale_checked_at": "2026-10-04T23:00:05.555685Z"
+      "last_updated": "2026-10-05T23:05:52.239303Z",
+      "stale": false
+    },
+    {
+      "id": "vn_vinhlong",
+      "country": "Vietnam",
+      "region": "Vinh Long",
+      "coordinates": {
+        "lat": 10.25,
+        "lon": 105.98
+      },
+      "current": {
+        "temp_c": 25,
+        "humidity_pct": 99,
+        "wind_kmh": 5.5,
+        "wind_dir": 328,
+        "precip_mm": 0.0
+      },
+      "forecast": {
+        "today": {
+          "high_c": 32,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 24
+        }
+      },
+      "last_updated": "2026-10-05T23:05:53.127363Z",
+      "stale": false
+    },
+    {
+      "id": "id_riau",
+      "country": "Indonesia",
+      "region": "Indragiri Hilir (Kateman)",
+      "coordinates": {
+        "lat": -0.35,
+        "lon": 103.2
+      },
+      "current": {
+        "temp_c": 25,
+        "humidity_pct": 95,
+        "wind_kmh": 3.6,
+        "wind_dir": 189,
+        "precip_mm": 0.3
+      },
+      "forecast": {
+        "today": {
+          "high_c": 32,
+          "low_c": 25
+        },
+        "tomorrow": {
+          "high_c": 31,
+          "low_c": 25
+        }
+      },
+      "last_updated": "2026-10-05T23:05:54.016091Z",
+      "stale": false
     }
   ]
 }
