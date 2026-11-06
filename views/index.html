@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calendar Hub</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.svg">
+<meta name="theme-color" content="#f4f2ee">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<style>
+  :root {
+    --bg: #f4f2ee;
+    --card: #ffffff;
+    --ink: #2d2a24;
+    --muted: #8a8478;
+    --line: #e8e3d8;
+    --gold: #c9a961;
+    --work: #6b7fa3;
+    --personal: #3e9b6e;
+    --tutumoo: #9a6fc0;
+    --tripit: #d98a3d;
+    --clash: #d94f3d;
+    --free: #d9ead3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 16px clamp(10px, 3vw, 32px) 40px;
+  }
+  header { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+  header h1 { font-size: 22px; margin: 0; letter-spacing: -0.3px; }
+  header h1 .lion { margin-right: 6px; }
+  .spacer { flex: 1; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px;
+    border-radius: 999px; border: 1.5px solid var(--line); background: var(--card);
+    font-size: 13.5px; font-weight: 600; cursor: pointer; user-select: none;
+    transition: opacity .15s, box-shadow .15s;
+  }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .chip.off { opacity: .38; }
+  .chip[data-source="work"] .dot { background: var(--work); }
+  .chip[data-source="personal"] .dot { background: var(--personal); }
+  .chip[data-source="tutumoo"] .dot { background: var(--tutumoo); }
+  .chip[data-source="tripit"] .dot { background: var(--tripit); }
+
+  .btn {
+    padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--line);
+    background: var(--card); font-size: 13.5px; font-weight: 600; cursor: pointer; color: var(--ink);
+  }
+  .btn:hover { border-color: var(--gold); }
+  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.trip.on { background: var(--gold); border-color: var(--gold); color: #fff; }
+  input.jump { padding: 7px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); font-size: 13.5px; color: var(--ink); font-family: inherit; }
+
+  #banner {
+    display: none; background: #fdf0ee; border: 1.5px solid #f2c4bd; color: #a33d2e;
+    border-radius: 12px; padding: 10px 16px; font-size: 13.5px; margin-bottom: 12px;
+  }
+  #tripHint { display: none; background: #fbf6ea; border: 1.5px solid #ecd9ab; color: #8a6d2f; border-radius: 12px; padding: 10px 16px; font-size: 13.5px; margin-bottom: 12px; }
+
+  .panel { background: var(--card); border: 1.5px solid var(--line); border-radius: 18px; padding: 16px 18px; margin-bottom: 14px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 0 0 10px; }
+
+  /* agenda strip */
+  #agenda { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .aday { min-width: 148px; flex: 0 0 auto; border: 1.5px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+  .aday.today { border-color: var(--gold); background: #fdfaf2; }
+  .aday h3 { font-size: 12px; margin: 0 0 8px; color: var(--muted); font-weight: 700; }
+  .aday.today h3 { color: var(--gold); }
+  .aev { font-size: 12px; line-height: 1.35; margin-bottom: 7px; padding-left: 8px; border-left: 3px solid var(--line); }
+  .aev .t { color: var(--muted); font-size: 11px; display: block; }
+  .aev.work { border-color: var(--work); } .aev.personal { border-color: var(--personal); } .aev.tutumoo { border-color: var(--tutumoo); } .aev.tripit { border-color: var(--tripit); }
+  .aev.clash { border-color: var(--clash); }
+  .aev.clash .t::after { content: " \26A0"; color: var(--clash); }
+  .afree { font-size: 12px; color: #b9b2a4; font-style: italic; }
+  .amore { font-size: 12px; color: var(--gold); font-weight: 700; cursor: pointer; user-select: none; }
+  .aday.extend { display: flex; align-items: center; justify-content: center; min-width: 120px; cursor: pointer; user-select: none; color: var(--gold); font-weight: 700; font-size: 13px; border-style: dashed; }
+  .aday.extend:hover { background: #fdfaf2; }
+
+  /* conflicts */
+  #conflictsPanel { display: none; border-color: #f2c4bd; }
+  #conflictsPanel h2 { color: var(--clash); }
+  .conf { font-size: 13px; margin-bottom: 8px; padding-left: 10px; border-left: 3px solid var(--clash); line-height: 1.4; }
+  .conf .when { color: var(--muted); font-size: 12px; }
+
+  /* calendar card */
+  #calWrap { background: var(--card); border: 1.5px solid var(--line); border-radius: 18px; padding: 14px; }
+  .fc { --fc-border-color: var(--line); --fc-today-bg-color: #fdf8ec; font-size: 13.5px; }
+  .fc .fc-toolbar-title { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
+  .fc .fc-button { background: #fff; border: 1.5px solid var(--line); color: var(--ink); font-weight: 600; font-size: 13px; border-radius: 10px; padding: 5px 12px; box-shadow: none !important; }
+  .fc .fc-button:hover { border-color: var(--gold); background: #fff; color: var(--ink); }
+  .fc .fc-button-active { background: var(--ink) !important; border-color: var(--ink) !important; color: #fff !important; }
+  .fc .fc-event { border: none; border-radius: 6px; padding: 1px 4px; font-size: 12px; cursor: pointer; }
+  .fc .fc-daygrid-event { margin-top: 2px; }
+  .fc-event.src-work { background: var(--work); }
+  .fc-event.src-personal { background: var(--personal); }
+  .fc-event.src-tutumoo { background: var(--tutumoo); }
+  .fc-event.src-tripit { background: var(--tripit); }
+  .fc-event.merged { background: linear-gradient(135deg, var(--personal) 50%, var(--tutumoo) 50%); }
+  .fc-event.merged.has-work { background: linear-gradient(135deg, var(--work) 50%, var(--personal) 50%); }
+  .fc-event.clash { box-shadow: 0 0 0 2px var(--clash); }
+  .fc .fc-daygrid-day.free-weekend { background: var(--free); }
+  .fc .fc-col-header-cell-cushion, .fc .fc-daygrid-day-number { color: var(--ink); text-decoration: none; }
+  .fc .fc-timegrid-slot { height: 2em; }
+
+  /* modal */
+  #overlay { display: none; position: fixed; inset: 0; background: rgba(45,42,36,.45); z-index: 50; align-items: center; justify-content: center; padding: 20px; }
+  #modal { background: #fff; border-radius: 20px; padding: 26px 28px; max-width: 420px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+  #modal h3 { margin: 0 0 4px; font-size: 18px; }
+  #modal .row { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.5; word-break: break-word; }
+  #modal .badges { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff; }
+  .badge.work { background: var(--work); } .badge.personal { background: var(--personal); } .badge.tutumoo { background: var(--tutumoo); } .badge.tripit { background: var(--tripit); }
+  .badge.clashb { background: var(--clash); }
+  #modal button { margin-top: 18px; }
+
+  @media (max-width: 700px) {
+    body { padding: 10px 8px 30px; }
+    header h1 { font-size: 18px; }
+    .fc .fc-toolbar { flex-wrap: wrap; gap: 6px; }
+    .fc .fc-toolbar-title { font-size: 16px; }
+    .panel { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="lion">&#129409;</span>Calendar Hub</h1>
+  <span class="chip" data-source="work"><span class="dot"></span>Work</span>
+  <span class="chip" data-source="personal"><span class="dot"></span>Personal</span>
+  <span class="chip" data-source="tutumoo"><span class="dot"></span>Tutumoo</span>
+  <span class="chip" data-source="tripit" style="display:none"><span class="dot"></span>TripIt</span>
+  <div class="spacer"></div>
+  <button class="btn trip" id="tripBtn">&#9992;&#65039; Trip planning</button>
+  <input class="jump" type="month" id="jump" title="Jump to month">
+  <button class="btn" id="refreshBtn">&#8635; Refresh</button>
+</header>
+
+<div id="banner"></div>
+<div id="tripHint">Trip mode: work calendar hidden &middot; <b>green weekends are completely free</b> across your visible calendars.</div>
+
+<div class="panel" id="agendaPanel">
+  <h2 id="agendaTitle">Next 14 days</h2>
+  <div id="agenda"></div>
+</div>
+
+<div class="panel" id="travelPanel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;">
+    <h2 style="margin:0;">&#9992;&#65039; Time outside Singapore</h2>
+    <span id="travelYears"></span>
+  </div>
+  <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; margin-top:10px;">
+    <div><span id="travelDays" style="font-size:30px; font-weight:700;">–</span> <span style="color:var(--muted);">days</span></div>
+    <div style="color:var(--muted); font-size:13.5px;" id="travelSub"></div>
+    <div class="spacer"></div>
+    <span class="amore" id="travelToggle" style="display:none;">show trips</span>
+  </div>
+  <div id="travelList" style="display:none; margin-top:12px;"></div>
+</div>
+
+<div class="panel" id="conflictsPanel">
+  <h2>&#9888; Clashes ahead</h2>
+  <div id="conflicts"></div>
+</div>
+
+<div id="calWrap"><div id="calendar"></div></div>
+
+<div id="overlay"><div id="modal">
+  <h3 id="mTitle"></h3>
+  <div class="row" id="mWhen"></div>
+  <div class="row" id="mLoc"></div>
+  <div class="row" id="mDesc"></div>
+  <div class="badges" id="mBadges"></div>
+  <button class="btn primary" onclick="document.getElementById('overlay').style.display='none'">Close</button>
+</div></div>
+
+<script>
+const SOURCE_LABELS = { work: 'Work', personal: 'Personal', tutumoo: 'Tutumoo', tripit: 'TripIt' };
+const visible = { work: true, personal: true, tutumoo: true, tripit: true };
+let tripMode = false;
+let workWasVisible = true;
+let calendar;
+
+function normTitle(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9一-鿿]+/g, ' ').trim(); }
+
+async function apiEvents(start, end) {
+  const r = await fetch(`/api/events?action=events&start=${encodeURIComponent(start.toISOString())}&end=${encodeURIComponent(end.toISOString())}`);
+  if (r.status === 401) { location.href = '/'; throw new Error('unauthorized'); }
+  return r.json();
+}
+
+let retryTimer = null;
+function showBanner(sources) {
+  // Only show chips for sources actually configured on the server.
+  document.querySelectorAll('.chip').forEach(c => {
+    c.style.display = sources && sources[c.dataset.source] ? '' : 'none';
+  });
+  const fails = Object.values(sources || {}).filter(s => s.error);
+  const el = document.getElementById('banner');
+  if (fails.length) {
+    el.style.display = 'block';
+    el.innerHTML = '&#9888; Could not load: <b>' + fails.map(s => s.label).join(', ') + '</b> — retrying automatically&hellip;';
+    // A failed feed (e.g. timeout during a cold server start) must never linger silently:
+    // keep retrying until every source loads.
+    if (!retryTimer) {
+      retryTimer = setTimeout(() => {
+        retryTimer = null;
+        if (calendar) calendar.refetchEvents();
+        loadAgenda();
+      }, 20000);
+    }
+  } else el.style.display = 'none';
+}
+
+// Merge duplicates (same start + same normalized title across sources) into one event with a sources list.
+function dedupe(events) {
+  const map = new Map();
+  for (const ev of events) {
+    const key = ev.start + '|' + normTitle(ev.title) + '|' + ev.allDay;
+    const hit = map.get(key);
+    if (hit) { if (!hit.sources.includes(ev.source)) hit.sources.push(ev.source); }
+    else map.set(key, { ...ev, sources: [ev.source] });
+  }
+  return [...map.values()];
+}
+
+// Mark overlapping timed events (after dedupe) as clashes; return conflict pairs.
+function detectClashes(events) {
+  // Timed events under 24h only — all-day events and multi-day blocks aren't double-bookings.
+  const timed = events.filter(e => !e.allDay && e.end && (new Date(e.end) - new Date(e.start)) < 24 * 3600 * 1000)
+    .sort((a, b) => a.start < b.start ? -1 : 1);
+  const pairs = [];
+  for (let i = 0; i < timed.length; i++) {
+    for (let j = i + 1; j < timed.length; j++) {
+      if (timed[j].start >= timed[i].end) break;
+      timed[i].clash = timed[j].clash = true;
+      pairs.push([timed[i], timed[j]]);
+    }
+  }
+  return pairs;
+}
+
+function fmtTime(iso) { return iso.slice(11, 16); }
+function fmtDay(iso) {
+  const d = new Date(iso.slice(0, 10) + 'T00:00:00');
+  return d.toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+function renderConflicts(pairs) {
+  // Only future (and today's) clashes — the grid range can reach into the past, e.g. in month view.
+  const todayStr = fmtISO(new Date());
+  pairs = pairs.filter(([a, b]) => a.end.slice(0, 10) >= todayStr || b.end.slice(0, 10) >= todayStr);
+  const panel = document.getElementById('conflictsPanel');
+  const box = document.getElementById('conflicts');
+  if (!pairs.length) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  box.innerHTML = pairs.slice(0, 20).map(([a, b]) =>
+    `<div class="conf"><span class="when">${fmtDay(a.start)} &middot; ${fmtTime(a.start)}&ndash;${fmtTime(a.end)} / ${fmtTime(b.start)}&ndash;${fmtTime(b.end)}</span><br>
+     <b>${esc(a.title)}</b> <span class="when">(${a.sources.map(s => SOURCE_LABELS[s]).join('+')})</span> overlaps
+     <b>${esc(b.title)}</b> <span class="when">(${b.sources.map(s => SOURCE_LABELS[s]).join('+')})</span></div>`).join('') +
+    (pairs.length > 20 ? `<div class="conf">&hellip;and ${pairs.length - 20} more</div>` : '');
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+// Free-weekend background events for trip mode.
+function freeWeekendBackgrounds(events, rangeStart, rangeEnd) {
+  const busy = new Set();
+  for (const ev of events) {
+    let d = new Date(ev.start.slice(0, 10) + 'T00:00:00');
+    const last = new Date((ev.allDay && ev.end ? ev.end : ev.end || ev.start).slice(0, 10) + 'T00:00:00');
+    if (ev.allDay && ev.end) last.setDate(last.getDate() - 1); // all-day end is exclusive
+    while (d <= last) { busy.add(d.toISOString().slice(0, 10)); d.setDate(d.getDate() + 1); }
+  }
+  const bg = [];
+  const d = new Date(rangeStart);
+  d.setHours(0, 0, 0, 0);
+  while (d < rangeEnd) {
+    if (d.getDay() === 6) { // Saturday
+      const sat = d.toISOString ? fmtISO(d) : '';
+      const sun = new Date(d); sun.setDate(sun.getDate() + 1);
+      if (!busy.has(fmtISO(d)) && !busy.has(fmtISO(sun))) {
+        bg.push({ start: fmtISO(d), end: fmtISO(addDays(sun, 1)), display: 'background', classNames: ['free-weekend-bg'], color: 'var(--free)', allDay: true });
+      }
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return bg;
+}
+function fmtISO(d) { return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+
+function toFC(ev) {
+  const primary = ev.sources[0];
+  const classNames = ['src-' + primary];
+  if (ev.sources.length > 1) { classNames.push('merged'); if (ev.sources.includes('work')) classNames.push('has-work'); }
+  if (ev.clash) classNames.push('clash');
+  return {
+    id: ev.id, title: (ev.sources.length > 1 ? '⧉ ' : '') + ev.title,
+    start: ev.start, end: ev.end, allDay: ev.allDay, classNames,
+    extendedProps: { raw: ev },
+  };
+}
+
+async function sourceFn(info, success, failure) {
+  try {
+    const data = await apiEvents(info.start, info.end);
+    showBanner(data.sources);
+    let evs = data.events.filter(e => visible[e.source]);
+    evs = dedupe(evs);
+    const pairs = detectClashes(evs);
+    renderConflicts(pairs);
+    const fcEvents = evs.map(toFC);
+    if (tripMode) fcEvents.push(...freeWeekendBackgrounds(evs, info.start, info.end));
+    success(fcEvents);
+  } catch (e) { failure(e); }
+}
+
+let agendaDays = 14;
+const expandedDays = new Set();
+
+async function loadAgenda() {
+  const start = new Date(); start.setHours(0, 0, 0, 0);
+  const end = addDays(start, agendaDays);
+  const data = await apiEvents(start, end);
+  let evs = dedupe(data.events.filter(e => visible[e.source]));
+  detectClashes(evs);
+  const byDay = {};
+  for (const ev of evs) {
+    const day = ev.start.slice(0, 10);
+    (byDay[day] = byDay[day] || []).push(ev);
+  }
+  document.getElementById('agendaTitle').textContent = `Next ${agendaDays} days`;
+  const box = document.getElementById('agenda');
+  box.innerHTML = '';
+  for (let i = 0; i < agendaDays; i++) {
+    const d = addDays(start, i);
+    const key = fmtISO(d);
+    const dayEvs = (byDay[key] || []);
+    const showAll = expandedDays.has(key);
+    const shown = showAll ? dayEvs : dayEvs.slice(0, 5);
+    const el = document.createElement('div');
+    el.className = 'aday' + (i === 0 ? ' today' : '');
+    el.innerHTML = `<h3>${i === 0 ? 'TODAY' : d.toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase()}</h3>` +
+      (dayEvs.length ? shown.map(ev =>
+        `<div class="aev ${ev.sources[0]}${ev.clash ? ' clash' : ''}"><span class="t">${ev.allDay ? 'all day' : fmtTime(ev.start) + '–' + fmtTime(ev.end)}</span>${esc(ev.title)}</div>`).join('') +
+        (dayEvs.length > 5 ? `<div class="amore" data-day="${key}">${showAll ? 'show less' : '+' + (dayEvs.length - 5) + ' more'}</div>` : '')
+      : '<div class="afree">free</div>');
+    box.appendChild(el);
+  }
+  const ext = document.createElement('div');
+  ext.className = 'aday extend';
+  ext.id = 'agendaExtend';
+  ext.textContent = '+ 14 more days';
+  box.appendChild(ext);
+}
+
+let travelYear = new Date().getFullYear();
+let travelTripsCache = [];
+async function loadTravel() {
+  const r = await fetch('/api/travel?action=travel&year=' + travelYear);
+  if (!r.ok) return;
+  const d = await r.json();
+  travelTripsCache = d.trips || [];
+  document.getElementById('travelDays').textContent = d.days;
+  document.getElementById('travelSub').textContent =
+    `${d.nights} nights · ${d.trips.length} trips · ${travelYear}` +
+    (travelYear >= new Date().getFullYear() ? ' (so far + booked)' : '');
+  // year chips
+  const thisY = new Date().getFullYear();
+  const years = [thisY - 1, thisY, thisY + 1];
+  document.getElementById('travelYears').innerHTML = years.map(y =>
+    `<span class="chip" data-year="${y}" style="padding:3px 10px;font-size:12px;${y === travelYear ? '' : 'opacity:.5;'}">${y}</span>`).join(' ');
+  document.querySelectorAll('#travelYears .chip').forEach(c => c.addEventListener('click', () => {
+    travelYear = +c.dataset.year; loadTravel();
+    if (document.getElementById('travelList').style.display !== 'none') renderTravelList();
+  }));
+  document.getElementById('travelToggle').style.display = travelTripsCache.length ? '' : 'none';
+  if (document.getElementById('travelList').style.display !== 'none') renderTravelList();
+}
+function renderTravelList() {
+  document.getElementById('travelList').innerHTML = travelTripsCache.map(t =>
+    `<div class="aev tripit" style="margin-bottom:6px;"><span class="t">${fmtDay(t.start + 'T00:00:00')} – ${fmtDay(t.end + 'T00:00:00')} · ${t.days}d</span>${esc(t.label)}</div>`).join('');
+}
+
+function openModal(raw) {
+  document.getElementById('mTitle').textContent = raw.title;
+  document.getElementById('mWhen').textContent = raw.allDay
+    ? fmtDay(raw.start) + ' (all day)'
+    : `${fmtDay(raw.start)} · ${fmtTime(raw.start)}–${fmtTime(raw.end)} SGT`;
+  document.getElementById('mLoc').textContent = raw.location ? '\u{1F4CD} ' + raw.location : '';
+  document.getElementById('mDesc').textContent = raw.description || '';
+  document.getElementById('mBadges').innerHTML =
+    raw.sources.map(s => `<span class="badge ${s}">${SOURCE_LABELS[s]}</span>`).join('') +
+    (raw.clash ? '<span class="badge clashb">&#9888; clashes</span>' : '');
+  document.getElementById('overlay').style.display = 'flex';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    initialView: window.innerWidth < 700 ? 'listWeek' : 'dayGridMonth',
+    headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek' },
+    buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day', list: 'List' },
+    events: sourceFn,
+    lazyFetching: false,
+    firstDay: 1,
+    height: 'auto',
+    dayMaxEvents: 4,
+    nowIndicator: true,
+    eventClick: info => { if (info.event.extendedProps.raw) openModal(info.event.extendedProps.raw); },
+    eventDisplay: 'block',
+  });
+  calendar.render();
+  loadAgenda();
+  loadTravel();
+
+  document.getElementById('travelToggle').addEventListener('click', () => {
+    const list = document.getElementById('travelList');
+    const open = list.style.display === 'none';
+    list.style.display = open ? 'block' : 'none';
+    document.getElementById('travelToggle').textContent = open ? 'hide trips' : 'show trips';
+    if (open) renderTravelList();
+  });
+
+  document.getElementById('agenda').addEventListener('click', e => {
+    const more = e.target.closest('.amore');
+    if (more) {
+      const k = more.dataset.day;
+      if (expandedDays.has(k)) expandedDays.delete(k); else expandedDays.add(k);
+      loadAgenda();
+      return;
+    }
+    if (e.target.closest('#agendaExtend')) { agendaDays += 14; loadAgenda(); }
+  });
+
+  document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
+    const s = chip.dataset.source;
+    visible[s] = !visible[s];
+    chip.classList.toggle('off', !visible[s]);
+    calendar.refetchEvents();
+    loadAgenda();
+  }));
+
+  document.getElementById('tripBtn').addEventListener('click', () => {
+    tripMode = !tripMode;
+    document.getElementById('tripBtn').classList.toggle('on', tripMode);
+    document.getElementById('tripHint').style.display = tripMode ? 'block' : 'none';
+    const workChip = document.querySelector('.chip[data-source="work"]');
+    if (tripMode) { workWasVisible = visible.work; visible.work = false; }
+    else visible.work = workWasVisible;
+    workChip.classList.toggle('off', !visible.work);
+    calendar.refetchEvents();
+    loadAgenda();
+  });
+
+  document.getElementById('jump').addEventListener('change', e => {
+    if (e.target.value) calendar.gotoDate(e.target.value + '-01');
+  });
+
+  document.getElementById('refreshBtn').addEventListener('click', async e => {
+    e.target.textContent = '↻ Refreshing…';
+    await fetch('/api/refresh?action=refresh', { method: 'POST' });
+    calendar.refetchEvents();
+    await loadAgenda();
+    await loadTravel();
+    e.target.innerHTML = '&#8635; Refresh';
+  });
+
+  document.getElementById('overlay').addEventListener('click', e => {
+    if (e.target.id === 'overlay') e.target.style.display = 'none';
+  });
+});
+</script>
+</body>
+</html>
